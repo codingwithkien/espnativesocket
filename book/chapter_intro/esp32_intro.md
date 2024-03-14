@@ -20,3 +20,4 @@ Với khả năng tích hợp nhiều chức năng trong một chip và khả n�
 
 - **Dễ dàng tích hợp và phát triển:** ESP32 có sẵn trong nhiều board phát triển khác nhau với hỗ trợ phần mềm mạnh mẽ từ cộng đồng phát triển. Điều này giúp tạo điều kiện cho việc phát triển nhanh chóng và tích hợp ESP32 vào hệ thống tản nhiệt một cách dễ dàng.
 
+Việc sử dụng ESP32 trong hệ thống tản nhiệt mang lại nhiều lợi ích về thu thập dữ liệu, giao tiếp không dây, tích hợp với IoT, tiết kiệm năng lượng và dễ dàng tích hợp và phát triển. Điều này giúp nâng cao hiệu suất và tính linh hoạt của hệ thống tản nhiệt và tạo ra một giải pháp thông minh và hiệu quả.
