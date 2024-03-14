@@ -1,0 +1,1 @@
+# 1. Arduino IDE và ESP32 Board Manager

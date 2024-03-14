@@ -1,0 +1,1 @@
+# 4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt
