@@ -50,6 +50,10 @@ parts:
       - file: book/chapter_js/18_promises
       - file: book/chapter_js/19_dom
       - file: book/chapter_js/20_event
+  - caption: Các thành phần trong React Native và TailwindCSS
+    chapters:
+      - file: book/chapter_component_react_tailwind/component_react_native
+      - file: book/chapter_component_react_tailwind/tailwindcss
   - caption: Xây dựng ứng dụng với React Native và TailwindCSS
     chapters:
       - file: book/chapter_app/create_app
