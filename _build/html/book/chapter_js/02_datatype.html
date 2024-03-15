@@ -1,0 +1,1486 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Các kiểu dữ liệu trong JavaScript &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/02_datatype';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Boolean, Toán tử, Datetime" href="03_boolean_operator_date.html" />
+    <link rel="prev" title="1. Giới thiệu ngôn ngữ lập trình JavaScript" href="01_intro_js.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Lời nói đầu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">1. Giới Thiệu Thành Viên Trong Dự Án</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">2. IoT và Ứng Dụng Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">3. WebSocket là Gì và Tại Sao Sử Dụng Trong Dự Án?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">5. React Native và Tailwind CSS cho Giao Diện Người Dùng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Phân tích yêu cầu của dự án</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">1. Đặc Điểm và Chức Năng Của Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">2. Tính Năng Cần Thực Hiện với ESP32 và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">3. Thiết Kế Giao Diện Người Dùng với React Native và Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cài đặt môi trường phát triển</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">1. Arduino IDE và ESP32 Board Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">2. Node.js và npm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/yarn.html">3. Yarn (Tuỳ chọn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">4. React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">5. Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu ngôn ngữ lập trình JavaScript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html">1. Giới thiệu ngôn ngữ lập trình JavaScript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Các kiểu dữ liệu trong JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">3. Boolean, Toán tử, Datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">4. Cấu trúc câu điều kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">6. Vòng lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">7. Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_high_function.html">9. Hàm Nâng Cao</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng ứng dụng với React Native và TailwindCSS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">1. Cài Đặt và Cấu Hình Tailwind CSS cho React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">2. Tạo Giao Diện Chính cho Ứng Dụng Di Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/data_ui.html">3. Tích Hợp Giao Diện với Dữ Liệu từ ESP32</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng Server NodeJs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">1. Tạo Một Dự Án Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">2. Cài Đặt Express và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">3. Thiết Lập Server và Kết Nối WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/esp32_native.html">4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/02_datatype.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/02_datatype.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. Các kiểu dữ liệu trong JavaScript</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kieu-du-lieu-nguyen-thuy">Kiểu dữ liệu nguyên thuỷ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kieu-du-lieu-khong-nguyen-thuy">Kiểu dữ liệu không nguyên thuỷ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#so">Số</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#khai-bao-kieu-du-lieu-so">Khai báo kiểu dữ liệu số</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-math">Đối tượng Math</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tao-so-ngau-nhien">Tạo số ngẫu nhiên</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi">Chuỗi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noi-chuoi">Nối chuỗi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#su-dung-toan-tu-cong-de-noi-chuoi">Sử dụng toán tử cộng để nối chuỗi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi-dai">Chuỗi dài</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi-thoat-trong-strings">Chuỗi thoát trong Strings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals-template-strings">Template Literals (Template Strings)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phuong-thuc-string">Phương thức String</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-kieu-du-lieu-va-ep-kieu">Kiểm tra kiểu dữ liệu và Ép kiểu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-kieu-du-lieu">Kiểm tra kiểu dữ liệu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-kieu-du-lieu-ep-kieu">Đổi kiểu dữ liệu (Ép kiểu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-thanh-int">String thành Int</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-thanh-float">String thành Float</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#float-thanh-int">Float thành Int</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngay-2-bai-tap">💻 Ngày 2: Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-1">Bài tập: Cấp độ 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-2">Bài tập: Cấp độ 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-3">Bài tập: Cấp độ 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cac-kieu-du-lieu-trong-javascript">
+<h1>2. Các kiểu dữ liệu trong JavaScript<a class="headerlink" href="#cac-kieu-du-lieu-trong-javascript" title="Link to this heading">#</a></h1>
+<p>Trong phần trước, chúng ta đã đề cập một chút về kiểu dữ liệu. Dữ liệu hoặc giá trị có kiểu dữ liệu. Kiểu dữ liệu mô tả các đặc điểm của dữ liệu. Các kiểu dữ liệu có thể được chia thành hai:</p>
+<ol class="arabic simple">
+<li><p>Kiểu dữ liệu nguyên thủy</p></li>
+<li><p>Kiểu dữ liệu không nguyên thủy (Tham chiếu đối tượng)</p></li>
+</ol>
+<section id="kieu-du-lieu-nguyen-thuy">
+<h2>Kiểu dữ liệu nguyên thuỷ<a class="headerlink" href="#kieu-du-lieu-nguyen-thuy" title="Link to this heading">#</a></h2>
+<p>Các kiểu dữ liệu nguyên thuỷ trong JavaScript bao gồm:</p>
+<ol class="arabic simple">
+<li><p>Số - Số thực, số nguyên</p></li>
+<li><p>Chuỗi - Bất kỳ ký tự nào nằm trong dấu nháy đơn nháy kép, back-tick</p></li>
+<li><p>Boolean - <code class="docutils literal notranslate"><span class="pre">true</span></code> hoặc <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Null - rỗng hoặc không có giá trị</p></li>
+<li><p>Undefined - khai báo không gán giá trị</p></li>
+</ol>
+<p>Các kiểu dữ liệu không nguyên thủy trong JavaScript bao gồm:</p>
+<ol class="arabic simple">
+<li><p>Objects</p></li>
+<li><p>Functions</p></li>
+<li><p>Arrays</p></li>
+</ol>
+<p>Bây giờ, chúng ta hãy xem các kiểu dữ liệu nguyên thủy và không nguyên thủy chính xác nghĩa là gì.
+Kiểu dữ liệu <em>nguyên thủy</em> là kiểu dữ liệu bất biến (không thể sửa đổi). Khi một kiểu dữ liệu nguyên thủy được tạo, chúng ta không thể sửa đổi nó.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+</pre></div>
+</div>
+<p>Nếu chúng tôi cố gắng sửa đổi chuỗi được lưu trữ trong biến <em>word</em>, JavaScript sẽ phát sinh lỗi. Bất kỳ kiểu dữ liệu nào dưới dấu ngoặc kép, dấu ngoặc kép hoặc dấu ngoặc kép đều là kiểu dữ liệu chuỗi.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">word</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Y&#39;</span>
+</pre></div>
+</div>
+<p>Biểu thức này không thay đổi chuỗi được lưu trữ trong biến <em>word</em>. Vì vậy, chúng ta có thể nói rằng các chuỗi không thể sửa đổi hay nói cách khác là bất biến.
+Các kiểu dữ liệu ban đầu được so sánh bằng các giá trị của nó. Hãy để chúng tôi so sánh các giá trị dữ liệu khác nhau. Xem ví dụ bên dưới:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numOne</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">numTwo</span><span class="p">)</span><span class="w">      </span><span class="c1">// true</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">js</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">py</span><span class="p">)</span><span class="w">             </span><span class="c1">//false </span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">lightOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lightOff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lightOn</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">lightOff</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+</pre></div>
+</div>
+</section>
+<section id="kieu-du-lieu-khong-nguyen-thuy">
+<h2>Kiểu dữ liệu không nguyên thuỷ<a class="headerlink" href="#kieu-du-lieu-khong-nguyen-thuy" title="Link to this heading">#</a></h2>
+<p>Các kiểu dữ liệu <em>không nguyên thủy</em> có thể sửa đổi hoặc thay đổi được. Chúng ta có thể sửa đổi giá trị của các kiểu dữ liệu không nguyên thủy sau khi nó được tạo.
+Hãy để chúng tôi xem bằng cách tạo một mảng. Mảng là một danh sách các giá trị dữ liệu trong một dấu ngoặc vuông. Mảng có thể chứa các kiểu dữ liệu giống nhau hoặc khác nhau. Giá trị mảng được tham chiếu bởi chỉ mục của chúng. Trong JavaScript, chỉ mục mảng bắt đầu từ 0. Tức là, phần tử đầu tiên của một mảng được tìm thấy ở chỉ số 0, phần tử thứ hai ở chỉ mục một và phần tử thứ ba ở chỉ mục hai, v.v.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="nx">nums</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="w">  </span><span class="c1">// [10, 2, 3]</span>
+</pre></div>
+</div>
+<p>Như bạn có thể thấy, một mảng, một kiểu dữ liệu không phải nguyên thủy có thể thay đổi được. Các kiểu dữ liệu không nguyên thủy không thể được so sánh theo giá trị. Ngay cả khi hai kiểu dữ liệu không nguyên thủy có cùng thuộc tính và giá trị, chúng cũng không hoàn toàn bằng nhau.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">numbers</span><span class="p">)</span><span class="w">  </span><span class="c1">// false</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">userOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="nx">role</span><span class="o">:</span><span class="s1">&#39;teaching&#39;</span><span class="p">,</span>
+<span class="nx">country</span><span class="o">:</span><span class="s1">&#39;Finland&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">userTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="nx">role</span><span class="o">:</span><span class="s1">&#39;teaching&#39;</span><span class="p">,</span>
+<span class="nx">country</span><span class="o">:</span><span class="s1">&#39;Finland&#39;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">userOne</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">userTwo</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<p>Quy tắc ngón tay cái, chúng tôi không so sánh các kiểu dữ liệu không nguyên thủy. Không so sánh mảng, hàm hoặc đối tượng.
+Các giá trị không nguyên thủy được gọi là kiểu tham chiếu, vì chúng đang được so sánh bằng tham chiếu thay vì giá trị. Hai đối tượng chỉ hoàn toàn bằng nhau nếu chúng tham chiếu đến cùng một đối tượng cơ bản.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nums</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">numbers</span><span class="p">)</span><span class="w">  </span><span class="c1">// true</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">userOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="nx">role</span><span class="o">:</span><span class="s1">&#39;teaching&#39;</span><span class="p">,</span>
+<span class="nx">country</span><span class="o">:</span><span class="s1">&#39;Finland&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">userTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">userOne</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">userOne</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">userTwo</span><span class="p">)</span><span class="w">  </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p>Nếu bạn gặp khó khăn trong việc hiểu sự khác biệt giữa kiểu dữ liệu nguyên thủy và kiểu dữ liệu không nguyên thủy, bạn không phải là người duy nhất. Hãy bình tĩnh và chuyển sang phần tiếp theo và cố gắng quay lại sau một thời gian. Bây giờ chúng ta hãy bắt đầu các kiểu dữ liệu theo kiểu số.</p>
+</section>
+<section id="so">
+<h2>Số<a class="headerlink" href="#so" title="Link to this heading">#</a></h2>
+<p>Số là số nguyên và giá trị thập phân có thể thực hiện tất cả các phép toán số học.
+Hãy xem một số ví dụ về Số.</p>
+<section id="khai-bao-kieu-du-lieu-so">
+<h3>Khai báo kiểu dữ liệu số<a class="headerlink" href="#khai-bao-kieu-du-lieu-so" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">35</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span><span class="w">  </span><span class="c1">// we use const for non-changing values, gravitational constant in  m/s2</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">72</span><span class="w">         </span><span class="c1">// mass in Kilogram</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="w">       </span><span class="c1">// pi a geometrical constant</span>
+
+<span class="c1">// More Examples</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">boilingPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="c1">// temperature in oC, boiling point of water which is a constant</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bodyTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">37</span><span class="w">      </span><span class="c1">// oC average human body temperature, which is a constant</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">,</span><span class="w"> </span><span class="nx">gravity</span><span class="p">,</span><span class="w"> </span><span class="nx">mass</span><span class="p">,</span><span class="w"> </span><span class="nx">PI</span><span class="p">,</span><span class="w"> </span><span class="nx">boilingPoint</span><span class="p">,</span><span class="w"> </span><span class="nx">bodyTemp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="doi-tuong-math">
+<h3>Đối tượng Math<a class="headerlink" href="#doi-tuong-math" title="Link to this heading">#</a></h3>
+<p>Trong JavaScript, Đối tượng Math cung cấp rất nhiều phương thức để tương tác các con số.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">PI</span><span class="p">)</span><span class="w">                            </span><span class="c1">// 3.141592653589793</span>
+
+<span class="c1">// Rounding to the closest number</span>
+<span class="c1">// if above .5 up if less 0.5 down rounding</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">PI</span><span class="p">))</span><span class="w">                </span><span class="c1">// 3 to round values to the nearest number</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">9.81</span><span class="p">))</span><span class="w">              </span><span class="c1">// 10</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">PI</span><span class="p">))</span><span class="w">                </span><span class="c1">// 3 rounding down</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">PI</span><span class="p">))</span><span class="w">                 </span><span class="c1">// 4 rounding up</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="o">-</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span><span class="w"> </span><span class="c1">// -5, returns the minimum value</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="o">-</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span><span class="w"> </span><span class="c1">// 20, returns the maximum value</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">randNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="c1">// creates random number between 0 to 0.999999</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">randNum</span><span class="p">)</span>
+
+<span class="c1">// Let us  create random number between 0 to 10</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">11</span><span class="p">)</span><span class="w"> </span><span class="c1">// creates random number between 0 and 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+
+<span class="c1">//Absolute value</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="o">-</span><span class="mf">10</span><span class="p">))</span><span class="w">      </span><span class="c1">// 10</span>
+
+<span class="c1">//Square root</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">100</span><span class="p">))</span><span class="w">     </span><span class="c1">// 10</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">2</span><span class="p">))</span><span class="w">       </span><span class="c1">// 1.4142135623730951</span>
+
+<span class="c1">// Power</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">))</span><span class="w">     </span><span class="c1">// 9</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">E</span><span class="p">)</span><span class="w">             </span><span class="c1">// 2.718</span>
+
+<span class="c1">// Logarithm</span>
+<span class="c1">// Returns the natural logarithm with base E of x, Math.log(x)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="p">))</span><span class="w">        </span><span class="c1">// 0.6931471805599453</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">10</span><span class="p">))</span><span class="w">       </span><span class="c1">// 2.302585092994046</span>
+
+<span class="c1">// Returns the natural logarithm of 2 and 10 respectively</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">LN2</span><span class="p">)</span><span class="w">           </span><span class="c1">// 0.6931471805599453</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">LN10</span><span class="p">)</span><span class="w">          </span><span class="c1">// 2.302585092994046</span>
+
+<span class="c1">// Trigonometry</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="mf">60</span><span class="p">)</span>
+
+<span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="mf">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="tao-so-ngau-nhien">
+<h4>Tạo số ngẫu nhiên<a class="headerlink" href="#tao-so-ngau-nhien" title="Link to this heading">#</a></h4>
+<p>Đối tượng Math trong JavaScript có phương thức <code class="docutils literal notranslate"><span class="pre">random()</span></code> để tạo ra số ngẫu nhiên từ 0 đến 0,999999999…</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">randomNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="c1">// generates 0 to 0.999...</span>
+</pre></div>
+</div>
+<p>Bây giờ, chúng ta hãy xem cách sử dụng phương thức <code class="docutils literal notranslate"><span class="pre">random()</span></code> để tạo số ngẫu nhiên từ 0 đến 10:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">randomNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w">         </span><span class="c1">// generates 0 to 0.999</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numBtnZeroAndTen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">randomNum</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">11</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numBtnZeroAndTen</span><span class="p">)</span><span class="w">         </span><span class="c1">// this gives: min 0 and max 10.99</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">randomNumRoundToFloor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">numBtnZeroAndTen</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">randomNumRoundToFloor</span><span class="p">)</span><span class="w">    </span><span class="c1">// số từ 0 đến 10</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="chuoi">
+<h2>Chuỗi<a class="headerlink" href="#chuoi" title="Link to this heading">#</a></h2>
+<p>Chuỗi là văn bản, nằm dưới dấu <strong>nháy kép</strong>, <strong>nháy đơn</strong>, <strong>back-tick</strong>. Để khai báo một chuỗi, chúng ta cần tên biến, toán tử gán, giá trị dưới dấu nháy đơn, dấu nháy kép hoặc dấu ngoặc kép.
+Hãy xem một số ví dụ về chuỗi:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w">           </span><span class="c1">// chuỗi rỗng</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;teacher&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">quote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;The saying,&#39;Seeing is Believing&#39; is not correct in 2020.&quot;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">quotWithBackTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`The saying,&#39;Seeing is Believing&#39; is not correct in 2020.`</span>
+</pre></div>
+</div>
+<section id="noi-chuoi">
+<h3>Nối chuỗi<a class="headerlink" href="#noi-chuoi" title="Link to this heading">#</a></h3>
+<p>Nối hai hoặc nhiều chuỗi với nhau được gọi là nối chuỗi.
+Sử dụng các chuỗi được khai báo trong phần Chuỗi trước:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">space</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">lastName</span><span class="p">;</span><span class="w"> </span><span class="c1">// nối hai chuỗi với nhau.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fullName</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Asabeneh<span class="w"> </span>Yetayeh
+</pre></div>
+</div>
+<p>Chúng ta có thể nối các chuỗi theo nhiều cách khác nhau.</p>
+<section id="su-dung-toan-tu-cong-de-noi-chuoi">
+<h4>Sử dụng toán tử cộng để nối chuỗi<a class="headerlink" href="#su-dung-toan-tu-cong-de-noi-chuoi" title="Link to this heading">#</a></h4>
+<p>Nối chuỗi bằng cách sử dụng toán tử bổ sung là một cách cũ. Cách nối này tẻ nhạt và dễ xảy ra lỗi. Thật tốt khi biết cách nối theo cách này, nhưng tôi thực sự khuyên bạn nên sử dụng chuỗi mẫu ES6 (sẽ giải thích ở phần sau).</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Khai báo biến với các kiểu dữ liệu khác nhau</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;teacher&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">250</span>
+
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="nx">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">space</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">lastName</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">personInfoOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;. I am &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;. I live in &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">country</span><span class="p">;</span><span class="w"> </span><span class="c1">// ES5 string addition</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personInfoOne</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Asabeneh<span class="w"> </span>Yetayeh.<span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span><span class="m">250</span>.<span class="w"> </span>I<span class="w"> </span>live<span class="w"> </span><span class="k">in</span><span class="w"> </span>Finland
+</pre></div>
+</div>
+</section>
+<section id="chuoi-dai">
+<h4>Chuỗi dài<a class="headerlink" href="#chuoi-dai" title="Link to this heading">#</a></h4>
+<p>Một chuỗi có thể là một ký tự hoặc đoạn hoặc một trang. Nếu độ dài chuỗi quá lớn, nó không vừa với một dòng. Chúng ta có thể sử dụng ký tự gạch chéo ngược (\) ở cuối mỗi dòng để chỉ ra rằng chuỗi sẽ tiếp tục ở dòng tiếp theo.</p>
+<p><strong>Ví dụ:</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">paragraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;My name is Asabeneh Yetayeh. I live in Finland, Helsinki.\</span>
+<span class="s2">I am a teacher and I love teaching. I teach HTML, CSS, JavaScript, React, Redux, \</span>
+<span class="s2">Node.js, Python, Data Analysis and D3.js for anyone who is interested to learn. \</span>
+<span class="s2">In the end of 2019, I was thinking to expand my teaching and to reach \</span>
+<span class="s2">to global audience and I started a Python challenge from November 20 - December 19.\</span>
+<span class="s2">It was one of the most rewarding and inspiring experience.\</span>
+<span class="s2">Now, we are in 2020. I am enjoying preparing the 30DaysOfJavaScript challenge and \</span>
+<span class="s2">I hope you are enjoying too.&quot;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">paragraph</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="chuoi-thoat-trong-strings">
+<h4>Chuỗi thoát trong Strings<a class="headerlink" href="#chuoi-thoat-trong-strings" title="Link to this heading">#</a></h4>
+<p>Trong JavaScript và các ngôn ngữ lập trình khác \ theo sau một số ký tự là một chuỗi thoát. Hãy xem các ký tự thoát phổ biến nhất:</p>
+<ul class="simple">
+<li><p>\n: new line</p></li>
+<li><p>\t: Tab, means 8 spaces</p></li>
+<li><p>\: Back slash</p></li>
+<li><p>': Single quote (‘)</p></li>
+<li><p>&quot;: Double quote (“)</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;I hope everyone is enjoying the Học JavaScript trong 30 ngày challenge.\nDo you ?&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// line break</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Days\tTopics\tExercises&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Day 1\t3\t5&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Day 2\t3\t5&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Day 3\t3\t5&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Day 4\t3\t5&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;This is a backslash  symbol (\\)&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Để viết một dấu gạch chéo ngược</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;In every programming language it starts with \&quot;Hello, World!\&quot;&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;In every programming language it starts with \&#39;Hello, World!\&#39;&quot;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The saying \&#39;Seeing is Believing\&#39; isn\&#39;t correct in 2020&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kết quả trong console:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>I<span class="w"> </span>hope<span class="w"> </span>everyone<span class="w"> </span>is<span class="w"> </span>enjoying<span class="w"> </span>the<span class="w"> </span>Học<span class="w"> </span>JavaScript<span class="w"> </span>trong<span class="w"> </span><span class="m">30</span><span class="w"> </span>ngày<span class="w"> </span>challenge.
+Do<span class="w"> </span>you<span class="w"> </span>?
+Days<span class="w">  </span>Topics<span class="w">  </span>Exercises
+Day<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span>
+Day<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span>
+Day<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span>
+Day<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span>
+This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>backslash<span class="w">  </span>symbol<span class="w"> </span><span class="o">(</span><span class="se">\)</span>
+In<span class="w"> </span>every<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>with<span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span>
+In<span class="w"> </span>every<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>with<span class="w"> </span><span class="s1">&#39;Hello, World!&#39;</span>
+The<span class="w"> </span>saying<span class="w"> </span><span class="s1">&#39;Seeing is Believing&#39;</span><span class="w"> </span>isn<span class="err">&#39;</span>t<span class="w"> </span>correct<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2020</span>
+</pre></div>
+</div>
+</section>
+<section id="template-literals-template-strings">
+<h4>Template Literals (Template Strings)<a class="headerlink" href="#template-literals-template-strings" title="Link to this heading">#</a></h4>
+<p>Để tạo chuỗi mẫu, chúng tôi sử dụng hai dấu tích. Chúng ta có thể đưa dữ liệu vào dưới dạng các biểu thức bên trong một chuỗi mẫu. Để nhập dữ liệu, chúng tôi đặt biểu thức bằng một dấu ngoặc nhọn ({}) trước dấu $. Xem cú pháp bên dưới.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//Syntax</span>
+<span class="sb">`String literal text`</span>
+<span class="sb">`String literal text </span><span class="si">${</span><span class="nx">expression</span><span class="si">}</span><span class="sb">`</span>
+</pre></div>
+</div>
+<p><strong>Ví dụ: 1</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`The sum of 2 and 3 is 5`</span><span class="p">)</span><span class="w">              </span><span class="c1">// statically writing the data</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`The sum of </span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb"> is </span><span class="si">${</span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="w"> </span><span class="c1">// injecting the data dynamically</span>
+</pre></div>
+</div>
+<p><strong>Ví dụ: 2</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;teacher&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">250</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">lastName</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">personInfoTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`I am </span><span class="si">${</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">. I am </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">. I live in </span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">.`</span><span class="w"> </span><span class="c1">//ES6 - String interpolation method</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">personInfoThree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`I am </span><span class="si">${</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">. I live in </span><span class="si">${</span><span class="nx">city</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">. I am a </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">. I teach </span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">.`</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personInfoTwo</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personInfoThree</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>I<span class="w"> </span>am<span class="w"> </span>Asabeneh<span class="w"> </span>Yetayeh.<span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span><span class="m">250</span>.<span class="w"> </span>I<span class="w"> </span>live<span class="w"> </span><span class="k">in</span><span class="w"> </span>Finland.
+I<span class="w"> </span>am<span class="w"> </span>Asabeneh<span class="w"> </span>Yetayeh.<span class="w"> </span>I<span class="w"> </span>live<span class="w"> </span><span class="k">in</span><span class="w"> </span>Helsinki,<span class="w"> </span>Finland.<span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span>a<span class="w"> </span>teacher.<span class="w"> </span>I<span class="w"> </span>teach<span class="w"> </span>JavaScript.
+</pre></div>
+</div>
+<p>Using a string template or string interpolation method, we can add expressions, which could be a value, or some operations (comparison, arithmetic operations, ternary operation).</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb"> is greater than </span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span>is<span class="w"> </span>greater<span class="w"> </span>than<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="nb">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="phuong-thuc-string">
+<h3>Phương thức String<a class="headerlink" href="#phuong-thuc-string" title="Link to this heading">#</a></h3>
+<p>Mọi thứ trong JavaScript đều là một đối tượng. Chuỗi là một kiểu dữ liệu nguyên thủy có nghĩa là chúng ta không thể sửa đổi nó sau khi nó được tạo. Đối tượng string có nhiều phương thức string. Có nhiều phương thức chuỗi khác nhau có thể giúp chúng tôi làm việc với chuỗi.</p>
+<ol class="arabic simple">
+<li><p><em>length</em>: Phương thức <code class="docutils literal notranslate"><span class="pre">length</span></code> trả về độ dài của chuỗi bao gồm không gian trống.</p></li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">js</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">         </span><span class="c1">// 10</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">  </span><span class="c1">// 8</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><em>Truy cập các ký tự trong chuỗi</em>: Chúng ta có thể truy cập từng ký tự trong một chuỗi bằng cách sử dụng chỉ mục của nó. Trong lập trình, việc đếm bắt đầu từ 0. Chỉ số đầu tiên của chuỗi bằng 0 và chỉ số cuối cùng là độ dài của chuỗi trừ đi một.</p></li>
+</ol>
+<p><img alt="Truy cập string theo index" src="images/string_indexes.png" /></p>
+<p>phương thức này thay đổi chuỗi thành chữ thường..</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstLetter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstLetter</span><span class="p">)</span><span class="w">           </span><span class="c1">// J</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">secondLetter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="w">       </span><span class="c1">// a</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">thirdLetter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastLetter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">[</span><span class="mf">9</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastLetter</span><span class="p">)</span><span class="w">            </span><span class="c1">// t</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastIndex</span><span class="p">)</span><span class="w">  </span><span class="c1">// 9</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">[</span><span class="nx">lastIndex</span><span class="p">])</span><span class="w">    </span><span class="c1">// t</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><em>toUpperCase()</em>: thay đổi chuỗi thành chữ hoa.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span><span class="w">     </span><span class="c1">// JAVASCRIPT</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span><span class="w">  </span><span class="c1">// ASABENEH</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span><span class="w">    </span><span class="c1">// FINLAND</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><em>toLowerCase()</em>: thay đổi chuỗi thành chữ thường.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavasCript&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span><span class="w">     </span><span class="c1">// javascript</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span><span class="w">  </span><span class="c1">// asabeneh</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span><span class="w">   </span><span class="c1">// finland</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><em>substr()</em>: Cần có hai đối số, index bắt đầu và số ký tự để cắt.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">6</span><span class="p">))</span><span class="w">    </span><span class="c1">// Script</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">))</span><span class="w">   </span><span class="c1">// land</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p><em>substring()</em>: Nó có hai đối số, index bắt đầu và index dừng nhưng nó không bao gồm ký tự ở index dừng.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span><span class="w">     </span><span class="c1">// Java</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">10</span><span class="p">))</span><span class="w">    </span><span class="c1">// Script</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">4</span><span class="p">))</span><span class="w">       </span><span class="c1">// Script</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">))</span><span class="w">   </span><span class="c1">// Fin</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">))</span><span class="w">   </span><span class="c1">// land</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">3</span><span class="p">))</span><span class="w">      </span><span class="c1">// land</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p><em>split()</em>: Tách một chuỗi tại một vị trí được chỉ định.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">split</span><span class="p">())</span><span class="w">     </span><span class="c1">// Changes to an array -&gt; [&quot;Học JavaScript trong 30 ngày&quot;]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span><span class="w">  </span><span class="c1">// Split to an array at space -&gt; [&quot;30&quot;, &quot;Days&quot;, &quot;Of&quot;, &quot;JavaScript&quot;]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">split</span><span class="p">())</span><span class="w">    </span><span class="c1">// Change to an array - &gt; [&quot;Asabeneh&quot;]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span><span class="w">  </span><span class="c1">// Split to an array at each letter -&gt;  [&quot;A&quot;, &quot;s&quot;, &quot;a&quot;, &quot;b&quot;, &quot;e&quot;, &quot;n&quot;, &quot;e&quot;, &quot;h&quot;]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland, Sweden, Norway, Denmark, and Iceland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span><span class="w">  </span><span class="c1">// tách thành mảng tại dấu phẩy -&gt; [&quot;Finland&quot;, &quot; Sweden&quot;, &quot; Norway&quot;, &quot; Denmark&quot;, &quot; and Iceland&quot;]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">//  [&quot;Finland&quot;, &quot;Sweden&quot;, &quot;Norway&quot;, &quot;Denmark&quot;, &quot;and Iceland&quot;]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p><em>trim()</em>: Loại bỏ khoảng trắng ở đầu hoặc cuối chuỗi.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;   Học JavaScript trong 30 ngày   &#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; Asabeneh &#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span><span class="w">  </span><span class="c1">// vẫn xóa khoảng trắng ở đầu và cuối chuỗi</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>Học<span class="w"> </span>JavaScript<span class="w"> </span>trong<span class="w"> </span><span class="m">30</span><span class="w"> </span>ngày<span class="w">   </span>
+Học<span class="w"> </span>JavaScript<span class="w"> </span>trong<span class="w"> </span><span class="m">30</span><span class="w"> </span>ngày
+<span class="w">  </span>Asabeneh<span class="w"> </span>
+Asabeneh
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p><em>includes()</em>: Nó nhận một đối số chuỗi con và nó kiểm tra xem đối số chuỗi con có tồn tại trong chuỗi hay không. <code class="docutils literal notranslate"><span class="pre">include()</span></code> trả về kiểu boolean. Nếu một chuỗi con tồn tại trong một chuỗi, nó trả về <code class="docutils literal notranslate"><span class="pre">true</span></code>, ngược lại là <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;days&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// false - it is case sensitive!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Script&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;java&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Java&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// true</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;fin&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Fin&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;land&#39;</span><span class="p">))</span><span class="w">    </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Land&#39;</span><span class="p">))</span><span class="w">    </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p><em>replace()</em>: nhận như một tham số là chuỗi con cũ và một chuỗi con mới.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">oldsubstring</span><span class="p">,</span><span class="w"> </span><span class="nx">newsubstring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Python&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// 30 Days Of Python</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;Fin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Noman&#39;</span><span class="p">))</span><span class="w">       </span><span class="c1">// Nomanland</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
+<li><p><em>charAt()</em>: Lấy index và nó trả về giá trị tại index đó</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mf">0</span><span class="p">))</span><span class="w">        </span><span class="c1">// 3</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">lastIndex</span><span class="p">))</span><span class="w"> </span><span class="c1">// t</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li><p><em>charCodeAt()</em>: Lấy index và nó trả về mã char (số ASCII) của giá trị tại index đó.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mf">3</span><span class="p">))</span><span class="w">        </span><span class="c1">// D ASCII number is 68</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">lastIndex</span><span class="p">))</span><span class="w"> </span><span class="c1">// t ASCII is 116</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="13">
+<li><p><em>indexOf()</em>: Lấy một chuỗi con và nếu chuỗi con tồn tại trong một chuỗi, nó trả về vị trí đầu tiên của chuỗi con nếu không tồn tại nó trả về <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Học JavaScript trong 30 ngày&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">))</span><span class="w">       </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;days&#39;</span><span class="p">))</span><span class="w">       </span><span class="c1">// -1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">// 4</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;JavaScript&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// 11</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Script&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">//15</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">))</span><span class="w">     </span><span class="c1">// -1</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="14">
+<li><p><em>lastIndexOf()</em>: Lấy một chuỗi con và nếu chuỗi con tồn tại trong một chuỗi, nó trả về vị trí cuối cùng của chuỗi con nếu nó không tồn tại, nó trả về <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//syntax</span>
+<span class="nx">string</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript. If you do not love JavaScript what else can you love.&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">))</span><span class="w">       </span><span class="c1">// 67</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;you&#39;</span><span class="p">))</span><span class="w">        </span><span class="c1">// 63</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;JavaScript&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// 38</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="15">
+<li><p><em>concat()</em>: nối các chuỗi được truyền vào nó</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">substring</span><span class="p">,</span><span class="w"> </span><span class="nx">substring</span><span class="p">,</span><span class="w"> </span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;30&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;JavaScript&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// 30DaysOfJavaScript</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Fin&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;land&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// Finland</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="16">
+<li><p><em>startsWith</em>: nó nhận một chuỗi con làm đối số và nó kiểm tra xem chuỗi có bắt đầu bằng chuỗi con được chỉ định hay không. Nó trả về kiểu boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code> hoặc <code class="docutils literal notranslate"><span class="pre">false</span></code>).</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//syntax</span>
+<span class="nx">string</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Love is the best to in this world&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;Love&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">))</span><span class="w">  </span><span class="c1">// false</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;Fin&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;fin&#39;</span><span class="p">))</span><span class="w">   </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;land&#39;</span><span class="p">))</span><span class="w">  </span><span class="c1">//  false</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="17">
+<li><p><em>endsWith</em>: nó nhận một chuỗi con làm đối số và nó kiểm tra xem chuỗi có kết thúc bằng chuỗi con được chỉ định hay không. Nó trả về kiểu boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code> hoặc <code class="docutils literal notranslate"><span class="pre">false</span></code>).</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Love is the most powerful feeling in the world&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">))</span><span class="w">         </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;in the world&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// true</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;land&#39;</span><span class="p">))</span><span class="w">         </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;fin&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;Fin&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">//  false</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="18">
+<li><p><em>search</em>: nó nhận một chuỗi con làm đối số và nó trả về index của kết quả khớp đầu tiên. Giá trị tìm kiếm có thể là một chuỗi hoặc một mẫu biểu thức chính quy.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript. If you do not love JavaScript what else can you love.&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">))</span><span class="w">          </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/javascript/gi</span><span class="p">))</span><span class="w">  </span><span class="c1">// 7</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="19">
+<li><p><em>match</em>: nó nhận một chuỗi con hoặc một mẫu biểu thức chính quy làm đối số và nó trả về một mảng nếu có khớp nếu không thì nó trả về null. Hãy để chúng tôi xem mẫu biểu thức chính quy trông như thế nào. Nó bắt đầu bằng dấu / và kết thúc bằng dấu /.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;love&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">patternOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/</span><span class="w">     </span><span class="c1">// with out any flag</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">patternTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/gi</span><span class="w">   </span><span class="c1">// g-means to search in the whole text, i - case insensitive</span>
+</pre></div>
+</div>
+<p>Cú pháp match</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// syntax</span>
+<span class="nx">string</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">substring</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript. If you do not love JavaScript what else can you love.&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;love&quot;</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>input:<span class="w"> </span><span class="s2">&quot;I love JavaScript. If you do not love JavaScript what else can you love.&quot;</span>,<span class="w"> </span>groups:<span class="w"> </span>undefined<span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/gi</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">))</span><span class="w">   </span><span class="c1">// [&quot;love&quot;, &quot;love&quot;, &quot;love&quot;]</span>
+</pre></div>
+</div>
+<p>Chúng ta hãy tách các số từ văn bản bằng cách sử dụng một biểu thức chính quy. Đây không phải là phần biểu thức chính quy, đừng hoảng sợ! Chúng ta sẽ đề cập đến các cụm từ thông dụng ở phần sau.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;In 2019, I ran 30 Days of Python. Now, in 2020 I am super exited to start this challenge&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d+/</span>
+
+<span class="c1">// d with escape character means d not a normal d instead acts a digit</span>
+<span class="c1">// + means one or more digit numbers,</span>
+<span class="c1">// if there is g after that it means global, search everywhere.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regEx</span><span class="p">))</span><span class="w">  </span><span class="c1">// [&quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;9&quot;, &quot;3&quot;, &quot;0&quot;, &quot;2&quot;, &quot;0&quot;, &quot;2&quot;, &quot;0&quot;]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d+/g</span><span class="p">))</span><span class="w"> </span><span class="c1">// [&quot;2019&quot;, &quot;30&quot;, &quot;2020&quot;]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="20">
+<li><p><em>repeat()</em>: lặp lại 1 chuỗi với số lần được truyền vào nó.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">string</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;love&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mf">10</span><span class="p">))</span><span class="w"> </span><span class="c1">// lovelovelovelovelovelovelovelovelovelove</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="kiem-tra-kieu-du-lieu-va-ep-kieu">
+<h2>Kiểm tra kiểu dữ liệu và Ép kiểu<a class="headerlink" href="#kiem-tra-kieu-du-lieu-va-ep-kieu" title="Link to this heading">#</a></h2>
+<section id="kiem-tra-kieu-du-lieu">
+<h3>Kiểm tra kiểu dữ liệu<a class="headerlink" href="#kiem-tra-kieu-du-lieu" title="Link to this heading">#</a></h3>
+<p>Để kiểm tra kiểu dữ liệu của một biến nào đó, sử dụng từ khoá <code class="docutils literal notranslate"><span class="pre">typeof</span></code>.</p>
+<p><strong>Ví dụ:</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Các kiểu dữ liệu trong Javascript</span>
+<span class="c1">// Dưới đây là các kiểu khai báo dữ liệu khác nhau</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="w">      </span><span class="c1">// string</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="w">        </span><span class="c1">// string</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="w">         </span><span class="c1">// string</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="w">           </span><span class="c1">// string</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">250</span><span class="w">                   </span><span class="c1">// number</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">job</span><span class="w">                         </span><span class="c1">// undefined, vì chưa gán giá trị</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">)</span><span class="w">  </span><span class="c1">// string</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">firstName</span><span class="p">)</span><span class="w">   </span><span class="c1">// string</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w">          </span><span class="c1">// number</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="mf">3.14</span><span class="p">)</span><span class="w">        </span><span class="c1">// number</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">        </span><span class="c1">// boolean</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">       </span><span class="c1">// boolean</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">NaN</span><span class="p">)</span><span class="w">         </span><span class="c1">// number</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">job</span><span class="p">)</span><span class="w">         </span><span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w">   </span><span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w">        </span><span class="c1">// object</span>
+</pre></div>
+</div>
+</section>
+<section id="doi-kieu-du-lieu-ep-kieu">
+<h3>Đổi kiểu dữ liệu (Ép kiểu)<a class="headerlink" href="#doi-kieu-du-lieu-ep-kieu" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Kép kiểu: Chuyển đổi một kiểu dữ liệu này sang kiểu dữ liệu khác. Có các phương thức như <code class="docutils literal notranslate"><span class="pre">parseInt()</span></code>, <code class="docutils literal notranslate"><span class="pre">parseFloat()</span></code>, <code class="docutils literal notranslate"><span class="pre">Number()</span></code>, <code class="docutils literal notranslate"><span class="pre">dấu</span> <span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">str()</span></code>.
+Khi chúng ta thực hiện các phép toán số học, đầu tiên chuỗi số phải được chuyển đổi thành số nguyên hoặc float nếu không nó sẽ trả về lỗi.</p></li>
+</ul>
+<section id="string-thanh-int">
+<h4>String thành Int<a class="headerlink" href="#string-thanh-int" title="Link to this heading">#</a></h4>
+<p>Chúng ta có thể chuyển đổi chuỗi số thành một số. Bất kỳ số nào bên trong một dấu ngoặc kép là một chuỗi số. Ví dụ về chuỗi số: ‘10’, ‘5’, v.v.
+Chúng ta có thể chuyển đổi chuỗi thành số bằng các phương pháp sau:</p>
+<ul class="simple">
+<li><p>parseInt()</p></li>
+<li><p>Number()</p></li>
+<li><p>Dấu cộng (+)</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numInt</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numInt</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="nx">num</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numInt</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+</section>
+<section id="string-thanh-float">
+<h4>String thành Float<a class="headerlink" href="#string-thanh-float" title="Link to this heading">#</a></h4>
+<p>Chúng ta có thể chuyển đổi chuỗi số thực thành một số thực. Bất kỳ số thực nào bên trong dấu ngoặc kép đều là chuỗi số thực. Ví dụ về chuỗi số thực: ‘9.81’, ‘3.14’, ‘1.44’, v.v.
+Chúng ta có thể chuyển đổi chuỗi số thực thành số bằng các phương pháp sau:</p>
+<ul class="simple">
+<li><p>parseFloat()</p></li>
+<li><p>Number()</p></li>
+<li><p>Dấu cộng (+)</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;9.81&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numFloat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numFloat</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9.81</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;9.81&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numFloat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numFloat</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9.81</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;9.81&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numFloat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="nx">num</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numFloat</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9.81</span>
+</pre></div>
+</div>
+</section>
+<section id="float-thanh-int">
+<h4>Float thành Int<a class="headerlink" href="#float-thanh-int" title="Link to this heading">#</a></h4>
+<p>Chúng ta có thể chuyển đổi số thực thành số nguyên.
+Sử dụng phương thức <code class="docutils literal notranslate"><span class="pre">parseInt()</span></code> để chuyển đổi float thành int:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numInt</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9</span>
+</pre></div>
+</div>
+<p>🌕  Bạn thật tuyệt vời. Bạn vừa hoàn thành thử thách ngày thứ 2 và bạn đang đi trước hai bước trên con đường vươn tới sự vĩ đại. Bây giờ hãy thực hiện một số bài tập cho não và cho cơ của bạn.</p>
+</section>
+</section>
+</section>
+<section id="ngay-2-bai-tap">
+<h2>💻 Ngày 2: Bài tập<a class="headerlink" href="#ngay-2-bai-tap" title="Link to this heading">#</a></h2>
+<section id="bai-tap-cap-do-1">
+<h3>Bài tập: Cấp độ 1<a class="headerlink" href="#bai-tap-cap-do-1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Khai báo một biến có tên là challenge và gán giá trị là <strong>‘Học JavaScript trong 30 ngày’</strong>.</p></li>
+<li><p>In chuỗi trên console của trình duyệt bằng <strong>console.log()</strong>.</p></li>
+<li><p>In <strong>độ dài</strong> của chuỗi trên console của trình duyệt bằng cách sử dụng <strong>console.log()</strong>.</p></li>
+<li><p>Đổi thành chữ in hoa tất cả ký tự trong chuỗi bằng phương thức <strong>toUpperCase()</strong>.</p></li>
+<li><p>Đổi thành chữ thường tất cả ký tự trong chuỗi bằng phương thức <strong>toLowerCase()</strong>.</p></li>
+<li><p>Cắt (slice) từ đầu tiên của chuỗi bằng cách sử dụng phương thức <strong>substr()</strong> hoặc <strong>substring()</strong>.</p></li>
+<li><p>Cắt bỏ cụm từ <em>Học JavaScript</em> from <em>Học JavaScript trong 30 ngày</em>.</p></li>
+<li><p>Sử dụng phương thức <strong>includes()</strong> để kiểm tra xem <strong>Script</strong> có trong chuỗi hay không.</p></li>
+<li><p>Tách <strong>string</strong> thành <strong>array</strong> sử dụng phương thức <strong>split()</strong></p></li>
+<li><p>Tách chuỗi <strong>Học JavaScript trong 30 ngày</strong> tại khoảng trắng bằng phương thức <strong>split()</strong></p></li>
+<li><p>‘Facebook, Google, Microsoft, Apple, IBM, Oracle, Amazon’ <strong>tách</strong> chuỗi tại dấu phẩy và đổi thành một mảng.</p></li>
+<li><p>Sử dụng <strong>replace()</strong> để đổi <strong>Học JavaScript trong 30 ngày</strong> thành <strong>Học Python trong 30 ngày</strong>.</p></li>
+<li><p>Ký tự ở index 15 trong chuỗi ‘Học JavaScript trong 30 ngày’ là gì? Sử dụng phương thức <strong>charAt()</strong>.</p></li>
+<li><p>Mã ký tự của J trong chuỗi ‘Học JavaScript trong 30 ngày’ bằng cách sử dụng là gì <strong>charCodeAt()</strong></p></li>
+<li><p>Sử dụng phương thức <strong>indexOf</strong> để xác định vị trí của lần xuất hiện đầu tiên của từ <strong>o</strong> trong Học JavaScript trong 30 ngày</p></li>
+<li><p>Sử dụng phương thức <strong>lastIndexOf</strong> để xác định vị trí của lần xuất hiện cuối cùng của từ <strong>o</strong> trong <strong>Học JavaScript trong 30 ngày</strong>.</p></li>
+<li><p>Sử dụng phương thức <strong>indexOf</strong> để tìm vị trí xuất hiện đầu tiên của từ <strong>vì</strong> trong câu sau:<strong>’Bạn không thể kết thúc câu bằng bởi vì bởi vì bởi vì là một liên từ’</strong></p></li>
+<li><p>Sử dụng phương thức <strong>lastIndexOf</strong> để tìm vị trí xuất hiện cuối cùng của từ <strong>vì</strong> trong câu sau:<strong>’Bạn không thể kết thúc câu bằng bởi vì bởi vì bởi vì là một liên từ’</strong></p></li>
+<li><p>Sử dụng phương thức <strong>search</strong> để tìm vị trí xuất hiện đầu tiên của từ <strong>vì</strong> trong câu sau:<strong>’Bạn không thể kết thúc câu bằng bởi vì bởi vì bởi vì là một liên từ’</strong></p></li>
+<li><p>Sử dụng phương thức <strong>trim()</strong> để xóa mọi khoảng trắng ở đầu và cuối chuỗi. ví dụ ‘ Học JavaScript trong 30 ngày ‘.</p></li>
+<li><p>Sử dụng phương thức <strong>startsWith()</strong> với  chuỗi <em>Học JavaScript trong 30 ngày</em> và làm kết quả thành <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Sử dụng phương thức <strong>endsWith()</strong> với chuỗi <em>Học JavaScript trong 30 ngày</em> và làm cho kết quả thành <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Sử dụng phương thức <strong>match()</strong> để tìm tất cả chữ <strong>o</strong> có trong <strong>Học JavaScript trong 30 ngày</strong></p></li>
+<li><p>Sử dụng <strong>concat()</strong> để thêm ‘Học JavaScript trong’ và ‘30 ngày’ vào 1 chuỗi, ‘Học JavaScript trong 30 ngày’</p></li>
+<li><p>Sử dụng phương thức <strong>repeat()</strong> để in <strong>Học JavaScript trong 30 ngày</strong> 2 lần.</p></li>
+</ol>
+</section>
+<section id="bai-tap-cap-do-2">
+<h3>Bài tập: Cấp độ 2<a class="headerlink" href="#bai-tap-cap-do-2" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">Sử</span> <span class="pre">dụng</span> <span class="pre">console.log()</span></code> in ra câu lệnh sau:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>The<span class="w"> </span>quote<span class="w"> </span><span class="s1">&#39;There is no exercise better for the heart than reaching down and lifting people up.&#39;</span><span class="w"> </span>by<span class="w"> </span>John<span class="w"> </span>Holmes<span class="w"> </span>teaches<span class="w"> </span>us<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>one<span class="w"> </span>another.
+</pre></div>
+</div>
+</li>
+<li><p>Sử dụng <code class="docutils literal notranslate"><span class="pre">console.log()</span></code> in ra câu trích dẫn sau đây của Mẹ Teresa:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Love is not patronizing and charity isn&#39;t about pity, it is about love. Charity and love are the same -- with charity you give love, so don&#39;t just give money but reach out your hand instead.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Kiểm tra xem typeof ‘10’ có bằng 10 hay không. Nếu không, hãy làm cho nó bằng nhau.</p></li>
+<li><p>Kiểm tra xem <code class="docutils literal notranslate"><span class="pre">parseFloat('9,</span> <span class="pre">8')</span></code> có bằng 10 hay không nếu không hãy làm cho nó bằng 10.</p></li>
+<li><p>Kiểm tra xem có tìm thấy ‘on’ trong python và jargon không.</p></li>
+<li><p><em>Tôi hy vọng khóa học này không chứa đầy những biệt ngữ</em>. Kiểm tra nếu <em>biệt ngữ</em> có trong câu.</p></li>
+<li><p>Tạo một số ngẫu nhiên từ 0 đến 100.</p></li>
+<li><p>Tạo một số ngẫu nhiên từ 50 đến 100.</p></li>
+<li><p>Tạo một số ngẫu nhiên từ 0 đến 255.</p></li>
+<li><p>Truy cập các ký tự chuỗi ‘JavaScript’ bằng cách sử dụng số ngẫu nhiên.</p></li>
+<li><p>Sử dụng <code class="docutils literal notranslate"><span class="pre">console.log()</span></code> và các ký tự thoát để in mẫu sau.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="mf">1</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">    </span><span class="mf">2</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">    </span><span class="mf">3</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="mf">27</span>
+<span class="w">    </span><span class="mf">4</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="mf">16</span><span class="w"> </span><span class="mf">64</span>
+<span class="w">    </span><span class="mf">5</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="mf">125</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li><p>Sử dụng <strong>substr</strong> để cắt ra cụm từ <strong>bởi vì bởi vì</strong> từ câu sau:<strong>’Bạn không thể kết thúc câu bằng bởi vì bởi vì bởi vì là một liên từ’</strong></p></li>
+</ol>
+</section>
+<section id="bai-tap-cap-do-3">
+<h3>Bài tập: Cấp độ 3<a class="headerlink" href="#bai-tap-cap-do-3" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>‘Tình yêu là điều tuyệt vời nhất trên thế giới này. Một số đã tìm thấy tình yêu của mình và một số vẫn đang tìm kiếm tình yêu của mình.’ Đếm số từ <strong>tình yêu</strong> trong câu này.</p></li>
+<li><p>Sử dụng <strong>match()</strong> để đếm số lần từ <em><em>vì</em> trong câu sau:</em><em>’Bạn không thể kết thúc câu bằng bởi vì bởi vì bởi vì là một liên từ’</em>_</p></li>
+<li><p>Clean the following text and find the most frequent word (hint, use replace and regular expressions).</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sentence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;%I $am@% a %tea@cher%, &amp;and&amp; I lo%#ve %te@a@ching%;. The@re $is no@th@ing; &amp;as&amp; mo@re rewarding as educa@ting &amp;and&amp; @emp%o@weri@ng peo@ple. ;I found tea@ching m%o@re interesting tha@n any ot#her %jo@bs. %Do@es thi%s mo@tiv#ate yo@u to be a tea@cher!? %Th#is 30#Days&amp;OfJavaScript &amp;is al@so $the $resu@lt of &amp;love&amp; of tea&amp;ching&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Tính tổng thu nhập hàng năm của người đó bằng cách trích các số từ văn bản sau. ‘Anh ấy kiếm được 5000 euro từ lương mỗi tháng, 10000 euro tiền thưởng hàng năm, các khóa học trực tuyến 15000 euro mỗi tháng.’</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_intro_js.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1. Giới thiệu ngôn ngữ lập trình JavaScript</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_boolean_operator_date.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Boolean, Toán tử, Datetime</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kieu-du-lieu-nguyen-thuy">Kiểu dữ liệu nguyên thuỷ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kieu-du-lieu-khong-nguyen-thuy">Kiểu dữ liệu không nguyên thuỷ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#so">Số</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#khai-bao-kieu-du-lieu-so">Khai báo kiểu dữ liệu số</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-math">Đối tượng Math</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tao-so-ngau-nhien">Tạo số ngẫu nhiên</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi">Chuỗi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noi-chuoi">Nối chuỗi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#su-dung-toan-tu-cong-de-noi-chuoi">Sử dụng toán tử cộng để nối chuỗi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi-dai">Chuỗi dài</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chuoi-thoat-trong-strings">Chuỗi thoát trong Strings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literals-template-strings">Template Literals (Template Strings)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phuong-thuc-string">Phương thức String</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-kieu-du-lieu-va-ep-kieu">Kiểm tra kiểu dữ liệu và Ép kiểu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-kieu-du-lieu">Kiểm tra kiểu dữ liệu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-kieu-du-lieu-ep-kieu">Đổi kiểu dữ liệu (Ép kiểu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-thanh-int">String thành Int</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-thanh-float">String thành Float</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#float-thanh-int">Float thành Int</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngay-2-bai-tap">💻 Ngày 2: Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-1">Bài tập: Cấp độ 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-2">Bài tập: Cấp độ 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-cap-do-3">Bài tập: Cấp độ 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

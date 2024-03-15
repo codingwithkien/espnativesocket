@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Boolean, Toán tử, Datetime &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/03_boolean_operator_date';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Cấu trúc câu điều kiện" href="04_condition.html" />
+    <link rel="prev" title="2. Các kiểu dữ liệu trong JavaScript" href="02_datatype.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Lời nói đầu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">1. Giới Thiệu Thành Viên Trong Dự Án</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">2. IoT và Ứng Dụng Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">3. WebSocket là Gì và Tại Sao Sử Dụng Trong Dự Án?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">5. React Native và Tailwind CSS cho Giao Diện Người Dùng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Phân tích yêu cầu của dự án</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">1. Đặc Điểm và Chức Năng Của Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">2. Tính Năng Cần Thực Hiện với ESP32 và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">3. Thiết Kế Giao Diện Người Dùng với React Native và Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cài đặt môi trường phát triển</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">1. Arduino IDE và ESP32 Board Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">2. Node.js và npm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/yarn.html">3. Yarn (Tuỳ chọn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">4. React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">5. Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu ngôn ngữ lập trình JavaScript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html">1. Giới thiệu ngôn ngữ lập trình JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_datatype.html">2. Các kiểu dữ liệu trong JavaScript</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Boolean, Toán tử, Datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">4. Cấu trúc câu điều kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">6. Vòng lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">7. Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_high_function.html">9. Hàm Nâng Cao</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng ứng dụng với React Native và TailwindCSS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">1. Cài Đặt và Cấu Hình Tailwind CSS cho React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">2. Tạo Giao Diện Chính cho Ứng Dụng Di Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/data_ui.html">3. Tích Hợp Giao Diện với Dữ Liệu từ ESP32</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng Server NodeJs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">1. Tạo Một Dự Án Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">2. Cài Đặt Express và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">3. Thiết Lập Server và Kết Nối WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/esp32_native.html">4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/03_boolean_operator_date.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/03_boolean_operator_date.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. Boolean, Toán tử, Datetime</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans">Booleans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-tri-dung">Giá trị đúng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-tri-sai">Giá trị sai</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#khong-xac-dinh">Không xác định</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null">Null</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu">Toán tử</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-gan">Toán tử gán</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-so-hoc">Toán tử số học</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-so-sanh">Toán tử so sánh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-logic">Toán tử Logic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-tang">Toán tử tăng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-giam">Toán tử giảm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-dieu-kien">Toán tử điều kiện</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-uu-tien-toan-tu">Độ ưu tiên toán tử</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phuong-thuc-cua-so">Phương thức cửa sổ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-alert">Hàm alert()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-prompt">Hàm prompt()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-confirm">Hàm confirm()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-date">Đối tượng Date</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tao-mot-doi-tuong-thoi-gian">Tạo một đối tượng thời gian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-nam">Lấy năm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thang">Lấy tháng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-ngay">Lấy ngày</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thu">Lấy thứ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-gio">Lấy giờ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phut">Lấy phút</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-giay">Lấy giây</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thoi-gian">Lấy thời gian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-3-bai-tap">💻 Day 3: Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-1">Bài tập: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-2">Bài tập: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-3">Bài tập: Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="boolean-toan-tu-datetime">
+<h1>3. Boolean, Toán tử, Datetime<a class="headerlink" href="#boolean-toan-tu-datetime" title="Link to this heading">#</a></h1>
+<section id="booleans">
+<h2>Booleans<a class="headerlink" href="#booleans" title="Link to this heading">#</a></h2>
+<p>Dữ liệu boolean thể hiện một trong hai giá trị: True (đúng) hoặc False (sai). Giá trị của boolean sẽ là đúng (True) hoặc sai (False). Việc sử dụng các kiểu dữ liệu này sẽ rõ ràng khi bạn sử dụng toán tử so sánh. Bất kì phương thức so sánh nào đều sẽ trả về giá trị boolean đúng hoặc sai.</p>
+<p><strong>Ví dụ: Giá Trị Boolean</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">isLightOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isRaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isHungry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isMarried</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">truValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w">    </span><span class="c1">// true</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">falseValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="w">  </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<p>Chúng ta có thể thấy được boolean chỉ có giá trị đúng hoặc sai.</p>
+<section id="gia-tri-dung">
+<h3>Giá trị đúng<a class="headerlink" href="#gia-tri-dung" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mọi số thực (dương và âm) đều mang giá trị đúng trừ 0</p></li>
+<li><p>Mọi chuỗi đều có giá trị đúng trừ chuỗi rỗng (‘’)</p></li>
+<li><p>Boolean đúng</p></li>
+</ul>
+</section>
+<section id="gia-tri-sai">
+<h3>Giá trị sai<a class="headerlink" href="#gia-tri-sai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>0</p></li>
+<li><p>0n</p></li>
+<li><p>null</p></li>
+<li><p>Không xác định</p></li>
+<li><p>NaN</p></li>
+<li><p>Boolean sai</p></li>
+<li><p>‘’, “”, ``, những chuỗi rỗng</p></li>
+</ul>
+<p>Ghi nhớ những điều kiện để giá trị đúng sai sẽ có ích, bởi vì ở phần tiếp theo, chúng ta sẽ sử dụng chúng với điều kiện để đưa ra lựa chọn.</p>
+</section>
+</section>
+<section id="khong-xac-dinh">
+<h2>Không xác định<a class="headerlink" href="#khong-xac-dinh" title="Link to this heading">#</a></h2>
+<p>Nếu chúng ta tạo một biến nhưng không gán một giá trị vào biến ấy, giá trị của biến ấy sẽ là <em>undefined</em>. Đồng thời, nếu một phương thức không trả một giá trị, phương thức ấy sẽ cho ra giá trị <em>underfined</em></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">)</span><span class="w"> </span><span class="c1">// Không xác định, bởi vì biến firstName chưa được gán giá trị</span>
+</pre></div>
+</div>
+</section>
+<section id="null">
+<h2>Null<a class="headerlink" href="#null" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">empty</span><span class="p">)</span><span class="w"> </span><span class="c1">// -&gt; null , nghĩa là không tồn tại</span>
+</pre></div>
+</div>
+</section>
+<section id="toan-tu">
+<h2>Toán tử<a class="headerlink" href="#toan-tu" title="Link to this heading">#</a></h2>
+<section id="toan-tu-gan">
+<h3>Toán tử gán<a class="headerlink" href="#toan-tu-gan" title="Link to this heading">#</a></h3>
+<p>Dấu bằng trong JavaScript là một toán tử gán. Nó được dụng để gán giá trị vào biến</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="w"> </span><span class="c1">// Gán giá trị &#39;Asabeneh&#39; vào biến firstName</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="w"> </span><span class="c1">// Gán giá trị &#39;Finland&#39; vào biến country</span>
+</pre></div>
+</div>
+<p>Toán tử gán</p>
+<p><img alt="Assignment operators" src="images/assignment_operators.png" /></p>
+</section>
+<section id="toan-tu-so-hoc">
+<h3>Toán tử số học<a class="headerlink" href="#toan-tu-so-hoc" title="Link to this heading">#</a></h3>
+<p>Toán tử số học là những phép tính toán.</p>
+<ul class="simple">
+<li><p>Phép cộng(+): a + b</p></li>
+<li><p>Phép trừ(-): a - b</p></li>
+<li><p>Phép nhân(*): a * b</p></li>
+<li><p>Phép chia(/): a / b</p></li>
+<li><p>Phép chia lấy dư(%): a % b</p></li>
+<li><p>Lũy thừa(**): a ** b</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">numTwo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">numTwo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">numTwo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">numTwo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">div</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">numTwo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">remainder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nx">numTwo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">powerOf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numOne</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">numTwo</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span><span class="w"> </span><span class="nx">diff</span><span class="p">,</span><span class="w"> </span><span class="nx">mult</span><span class="p">,</span><span class="w"> </span><span class="nx">div</span><span class="p">,</span><span class="w"> </span><span class="nx">remainder</span><span class="p">,</span><span class="w"> </span><span class="nx">powerOf</span><span class="p">)</span><span class="w"> </span><span class="c1">// 7,1,12,1.33,1, 64</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w">          </span><span class="c1">// độ dài đơn vị mét</span>
+
+<span class="c1">//Let us calculate area of a circle</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">areaOfCircle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">radius</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">areaOfCircle</span><span class="p">)</span><span class="w">  </span><span class="c1">//  314 m</span>
+
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span><span class="w">      </span><span class="c1">// đơn vị m/s2</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">72</span><span class="w">             </span><span class="c1">// đơn vị Kilogram</span>
+
+<span class="c1">//Chúng ta sẽ tính khối lượng của đối tượng này</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mass</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">gravity</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">weight</span><span class="p">)</span><span class="w">        </span><span class="c1">// 706.32 N(Newton)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">boilingPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w">  </span><span class="c1">// Nhiệt độ sôi của nước (oC)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bodyTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">37</span><span class="w">       </span><span class="c1">// Nhiệt độ cơ thể (oC)</span>
+
+<span class="c1">// Nối chuỗi với số sử dụng phép nội suy chuỗi</span>
+<span class="cm">/*</span>
+<span class="cm"> The boiling point of water is 100 oC.</span>
+<span class="cm"> Human body temperature is 37 oC.</span>
+<span class="cm"> The gravity of earth is 9.81 m/s2.</span>
+<span class="cm"> */</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+<span class="w">  </span><span class="sb">`The boiling point of water is </span><span class="si">${</span><span class="nx">boilingPoint</span><span class="si">}</span><span class="sb"> oC.\nHuman body temperature is </span><span class="si">${</span><span class="nx">bodyTemp</span><span class="si">}</span><span class="sb"> oC.\nThe gravity of earth is </span><span class="si">${</span><span class="nx">gravity</span><span class="si">}</span><span class="sb"> m / s2.`</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="toan-tu-so-sanh">
+<h3>Toán tử so sánh<a class="headerlink" href="#toan-tu-so-sanh" title="Link to this heading">#</a></h3>
+<p>Trong lập trình, khi chúng ta so sánh 2 giá trị với nhau, chúng ta sẽ sử dụng toán tử so sánh. Toán tử so sánh giúp cho chúng ta biết giá trị 1 sẽ lớn hoặc hay nhỏ hơn hoặc bằng giá trị 2.</p>
+<p><img alt="Comparison Operators" src="images/comparison_operators.png" />
+<strong>Ví dụ: Toán tử so sánh</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w">              </span><span class="c1">// Đúng, bởi vì 3 lớn hơn 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w">             </span><span class="c1">// Đúng, bởi vì 3 lớn hơn 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w">              </span><span class="c1">// Sai, bởi vì 3 lớn hơn 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">              </span><span class="c1">// Đúng, bởi vì 2 bé hơn 3 </span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">             </span><span class="c1">// Đúng, bởi vì 2 bé hơn 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w">             </span><span class="c1">// Sai, bởi vì 3 không bằng 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w">             </span><span class="c1">// Đúng, bởi vì 3 không bằng 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">)</span><span class="w">           </span><span class="c1">// Đúng, chỉ so sánh giá trị</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// Sai, so sánh cả giá trị lẫn kiểu dữ liệu</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// Đúng, so sánh cả giá trị lẫn kiểu dữ liệu</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">             </span><span class="c1">// Sai, chỉ so sánh giá trị</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">            </span><span class="c1">// Sai, so sánh cả giá trị lẫn kiểu dữ liệu</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">         </span><span class="c1">// Đúng, 2 giá trị tương đương nhau</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">        </span><span class="c1">// Sai, 2 giá trị không giống nhau hoàn toàn</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w">            </span><span class="c1">// Đúng, giá trị tương đương nhau </span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="w">           </span><span class="c1">// Đúng, giá trị tương đương nhau</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w">           </span><span class="c1">// Sai, 2 giá trị không giống nhau hoàn toàn</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">          </span><span class="c1">// Đúng, giá trị tương đương nhau</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">         </span><span class="c1">// Sai, 2 giá trị không giống nhau hoàn toàn</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">undefined</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w">  </span><span class="c1">// Đúng</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">undefined</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="c1">// Sai</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">NaN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">NaN</span><span class="p">)</span><span class="w">         </span><span class="c1">// Sai, không bằng nhau</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">NaN</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">NaN</span><span class="p">)</span><span class="w">        </span><span class="c1">// Sai</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">NaN</span><span class="p">)</span><span class="w">         </span><span class="c1">// Kiểu dữ liệu số</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;mango&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;avocado&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">  </span><span class="c1">// Sai</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;mango&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;avocado&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">  </span><span class="c1">// Đúng</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;mango&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;avocado&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">   </span><span class="c1">// Đúng</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;milk&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;meat&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">      </span><span class="c1">// Đúng</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;milk&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;meat&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">      </span><span class="c1">// Sai</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;tomato&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;potato&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">  </span><span class="c1">// Đúng</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;dragon&#39;</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w">   </span><span class="c1">// Sai</span>
+</pre></div>
+</div>
+<p>Hãy cố hiểu những so sánh trên theo logic, không nên học thuộc lòng bởi vì sẽ khó hơn.
+Javascript là một ngôn ngữ lập trình lạ. Code Javascript sẽ chạy và đưa ra kết quả nhưng trừ khi bạn thật sự thành thạo ngôn ngữ này, kết quả sẽ không như mong đợi.</p>
+<p>Theo như quy tắc ngón tay, nếu giá trị là không đúng với ‘==’ thì cũng sẽ không đúng với ‘===’. Sử dụng ‘===’ để so sánh sẽ an toàn hơn sử dụng ‘==’. Đường <a class="reference external" href="https://dorey.github.io/JavaScript-Equality-Table/">link</a> sau đây bao gồm một dãy kết quả so sánh giữa các kiểu dữ liệu khác nhau.</p>
+</section>
+<section id="toan-tu-logic">
+<h3>Toán tử Logic<a class="headerlink" href="#toan-tu-logic" title="Link to this heading">#</a></h3>
+<p>Các ký hiệu sau đây là các toán tử logic thông dụng:
+&amp;&amp; (và) , || (hoặc) và ! (phủ định). Toán tử &amp;&amp; sẽ cho kết quả đúng khi cả hai đều kiện đều đúng. Toán tử || sẽ cho kết quả đúng khi một trong hai điều kiện đúng. Toán tử ! sẽ đảo ngược kết quả lại.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ví dự toán tử &amp;&amp;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// đúng &amp;&amp; đúng -&gt; đúng</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// đúng &amp;&amp; sai -&gt; sai</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// sai &amp;&amp; sai -&gt; sai</span>
+
+<span class="c1">// Ví dụ toán tử ||</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// đúng  || đúng -&gt; đúng</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// đúng  || sai -&gt; đúng</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="w">         </span><span class="c1">// sai || sai -&gt; sai</span>
+
+<span class="c1">//Ví dụ toán tử !</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w">                     </span><span class="c1">// đúng</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="mf">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">                  </span><span class="c1">// sai</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isLightOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isLightOff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">isLightOn</span><span class="w">           </span><span class="c1">// sai</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isMarried</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="kc">false</span><span class="w">                </span><span class="c1">// đúng</span>
+</pre></div>
+</div>
+</section>
+<section id="toan-tu-tang">
+<h3>Toán tử tăng<a class="headerlink" href="#toan-tu-tang" title="Link to this heading">#</a></h3>
+<p>Trong JavaScipt chúng ta dùng toán tử tăng để tăng giá trị được chứa trong một biến. Toán tử tăng có thể nằm trước hoặc sau. Sau đây là ví dụ về cả 2 dạng:</p>
+<ol class="arabic simple">
+<li><p>Tăng nằm trước</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">++</span><span class="nx">count</span><span class="p">)</span><span class="w">        </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span><span class="w">          </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Tăng nằm sau</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="o">++</span><span class="p">)</span><span class="w">        </span><span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span><span class="w">          </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+<p>Đa phần chúng ta sẽ dùng toán tử tăng nằm sau. Vì thế chúng ta nên nhớ cách sử dụng toán tử tăng nằm sau.</p>
+</section>
+<section id="toan-tu-giam">
+<h3>Toán tử giảm<a class="headerlink" href="#toan-tu-giam" title="Link to this heading">#</a></h3>
+<p>Trong Javascript chúng ta dùng toán tử giảm để giảm giá trị được chứa trong một biến. Toán tử giảm có thể nằm trước hoặc sau. Sau đây là ví dụ về cả 2 dạng:</p>
+<ol class="arabic simple">
+<li><p>Giảm nằm trước</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">--</span><span class="nx">count</span><span class="p">)</span><span class="w"> </span><span class="c1">// -1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span><span class="w">  </span><span class="c1">// -1</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Giảm nằm sau</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span><span class="w">   </span><span class="c1">// -1</span>
+</pre></div>
+</div>
+</section>
+<section id="toan-tu-dieu-kien">
+<h3>Toán tử điều kiện<a class="headerlink" href="#toan-tu-dieu-kien" title="Link to this heading">#</a></h3>
+<p>Toán tử điều kiện cho chúng ta viết được điều kiện. Một cách khác để viết điều kiện là sử dụng toán tử điều kiện. Hãy xem các ví dụ sau:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">isRaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="nx">isRaining</span>
+<span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;You need a rain coat.&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;No need for a rain coat.&#39;</span><span class="p">)</span>
+<span class="nx">isRaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="nx">isRaining</span>
+<span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;You need a rain coat.&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;No need for a rain coat.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>You<span class="w"> </span>need<span class="w"> </span>a<span class="w"> </span>rain<span class="w"> </span>coat.
+No<span class="w"> </span>need<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>rain<span class="w"> </span>coat.
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span>
+<span class="nx">number</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">number</span><span class="si">}</span><span class="sb"> is a positive number`</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">number</span><span class="si">}</span><span class="sb"> is a negative number`</span><span class="p">)</span>
+<span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">5</span>
+
+<span class="nx">number</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">number</span><span class="si">}</span><span class="sb"> is a positive number`</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">number</span><span class="si">}</span><span class="sb"> is a negative number`</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">5</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>positive<span class="w"> </span>number
+-5<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>negative<span class="w"> </span>number
+</pre></div>
+</div>
+</section>
+<section id="do-uu-tien-toan-tu">
+<h3>Độ ưu tiên toán tử<a class="headerlink" href="#do-uu-tien-toan-tu" title="Link to this heading">#</a></h3>
+<p>Nếu bạn muốn biết thêm về độ ưu tiên các toán tử hãy truy cập vào <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">link</a>  này.</p>
+</section>
+</section>
+<section id="phuong-thuc-cua-so">
+<h2>Phương thức cửa sổ<a class="headerlink" href="#phuong-thuc-cua-so" title="Link to this heading">#</a></h2>
+<section id="ham-alert">
+<h3>Hàm alert()<a class="headerlink" href="#ham-alert" title="Link to this heading">#</a></h3>
+<p>Như ở đầu đã thấy, hàm alert() hiện một cửa sổ cảnh báo với một tin nhắn cụ thể và một nút bấm với chữ ‘OK’. Đây là một hàm có sẵn và có thể nhận tham số.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Welcome to 30DaysOfJavaScript&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Đừng sử dụng hàm alert() quá nhiều bởi vì sẽ gây khó chịu cho người sử dụng. Chỉ nên dùng để kiểm tra.</p>
+</section>
+<section id="ham-prompt">
+<h3>Hàm prompt()<a class="headerlink" href="#ham-prompt" title="Link to this heading">#</a></h3>
+<p>Hàm prompt sẽ hiện một cửa sổ cho phép chúng ta nhập dữ liệu vào trong trình duyệt và dữ liệu sẽ được lưu vào một biến. Hàm prompt() nhận 2 tham số. Tham số thứ hai có thể có hoặc không.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;required text&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;optional text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Enter number&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;number goes here&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ham-confirm">
+<h3>Hàm confirm()<a class="headerlink" href="#ham-confirm" title="Link to this heading">#</a></h3>
+<p>Hàm confirm() hiện một cửa sổ với một đoạn tin nhắn kèm theo một nút bấm ‘OK’ và nút bấm ‘Cancel’.
+Hàm confirm() thường được dùng để hỏi sự chấp thuận của người dùng trước khi thực hiện một hành động nào đó. Hàm confirm() nhận chuỗi làm tham số. Chọn nút ‘OK’ sẽ trả về giá trị đúng, còn nút ‘Cancel’ sẽ trả về giá trị sai.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">agree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;Are you sure you like to delete? &#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">agree</span><span class="p">)</span><span class="w"> </span><span class="c1">// kết quả sẽ trả về đúng hoặc sai tùy vào nút người dùng chọn trong cửa sổ</span>
+</pre></div>
+</div>
+<p>Đây không phải là toàn bộ phương thức cửa sổ. Sẽ có một phần riêng biệt để đi sâu vào các phương thức cửa sổ.</p>
+</section>
+</section>
+<section id="doi-tuong-date">
+<h2>Đối tượng Date<a class="headerlink" href="#doi-tuong-date" title="Link to this heading">#</a></h2>
+<p>Thời gian là một thứ quan trọng. Chúng ta muốn biết được thời gian của một hành động hoặc sự kiện gì đó. Trong Javascript, thời gian và ngày hiện tại được tạo ra sử dụng Đối tượng Date trong JavaScript. Đối tượng được tạo ra từ đối tượng Date sẽ có nhiều hàm giúp chúng ta trong việc xử lí thời gian và ngày. Những hàm được sử dụng để lấy được thông tin thời gian và ngày trong đối tượng Date đều bắt đầu với từ <em>get</em>.
+<em>getFullYear(), getMonth(), getDate(), getDay(), getHours(), getMinutes, getSeconds(), getMilliseconds(), getTime(), getDay()</em></p>
+<p><img alt="Date time Object" src="images/date_time_object.png" /></p>
+<section id="tao-mot-doi-tuong-thoi-gian">
+<h3>Tạo một đối tượng thời gian<a class="headerlink" href="#tao-mot-doi-tuong-thoi-gian" title="Link to this heading">#</a></h3>
+<p>Sau khi tạo một đối tượng thời gian. Đối tượng đó sẽ cho chúng ta thông tin về thời gian. Đây là bước để tạo đối tượng thời gian.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">)</span><span class="w"> </span><span class="c1">// Sat Jan 04 2020 00:56:41 GMT+0200 (Eastern European Standard Time)</span>
+</pre></div>
+</div>
+<p>Chúng ta đã tạo một đối tượng thời gian. Giờ chúng ta có thể lấy mọi thông tin liên quan đến thời gian từ đối tượng đã tạo bằng cách sử dụng các hàm <em>get</em> trong bảng trên.</p>
+</section>
+<section id="lay-nam">
+<h3>Lấy năm<a class="headerlink" href="#lay-nam" title="Link to this heading">#</a></h3>
+<p>Lấy năm từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">())</span><span class="w"> </span><span class="c1">// 2020</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-thang">
+<h3>Lấy tháng<a class="headerlink" href="#lay-thang" title="Link to this heading">#</a></h3>
+<p>Lấy tháng từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">())</span><span class="w"> </span><span class="c1">// 0, bởi vì đây là tháng Giêng, tháng(0-11)</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-ngay">
+<h3>Lấy ngày<a class="headerlink" href="#lay-ngay" title="Link to this heading">#</a></h3>
+<p>Lấy ngày trong tháng từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getDate</span><span class="p">())</span><span class="w"> </span><span class="c1">// 4, bởi vì ngày trong tháng là ngày bốn, ngày(1-31)</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-thu">
+<h3>Lấy thứ<a class="headerlink" href="#lay-thu" title="Link to this heading">#</a></h3>
+<p>Lấy thứ ngày trong tuần từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getDay</span><span class="p">())</span><span class="w"> </span><span class="c1">// 6, bởi vì hôm nay là thứ bảy</span>
+<span class="c1">//  Chủ nhật là 0, thứ Hai là 1 và thứ bảy là 6</span>
+<span class="c1">// Ngày trong tuần (0-6)</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-gio">
+<h3>Lấy giờ<a class="headerlink" href="#lay-gio" title="Link to this heading">#</a></h3>
+<p>Lấy giờ từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">())</span><span class="w"> </span><span class="c1">// 0, bời vì thời gian là 00:56:41</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-phut">
+<h3>Lấy phút<a class="headerlink" href="#lay-phut" title="Link to this heading">#</a></h3>
+<p>Lấy phút từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">())</span><span class="w"> </span><span class="c1">// 56, bời vì thời gian là 00:56:41</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-giay">
+<h3>Lấy giây<a class="headerlink" href="#lay-giay" title="Link to this heading">#</a></h3>
+<p>Lấy giây từ đối tượng thời gian</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">())</span><span class="w"> </span><span class="c1">// 41, bời vì thời gian là 00:56:41</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-thoi-gian">
+<h3>Lấy thời gian<a class="headerlink" href="#lay-thoi-gian" title="Link to this heading">#</a></h3>
+<p>Phương thức này sẽ cho chúng ta thời gian theo giây tính từ ngày 1, tháng 1, năm 1970. Đây còn được gọi là thời gian Unix. Chúng ta có thể lấy thời gian Unix theo 2 cách sau:</p>
+<ol class="arabic simple">
+<li><p>Sử dụng hàm <em>getTime()</em></p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span><span class="w"> </span><span class="c1">//</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getTime</span><span class="p">())</span><span class="w"> </span><span class="c1">// 1578092201341, đây là số giây đã trôi qua kể từ ngày 1, tháng 1, năm 1970 đến 4 Tháng 1, 2020 00:56:41</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Sử dụng hàm <em>Date.now()</em></p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">allSeconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="c1">//</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allSeconds</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1578092201341,đây là số giây đã trôi qua kể từ ngày 1, tháng 1, năm 1970 đến 4 Tháng 1, 2020 00:56:41</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">timeInSeconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allSeconds</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">timeInSeconds</span><span class="p">)</span><span class="w"> </span><span class="c1">// đúng</span>
+</pre></div>
+</div>
+<p>Chúng ta sẽ điều chỉnh lại giá trị để có thể dễ đọc thời gian hơn</p>
+<p><strong>Ví dụ:</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span><span class="w"> </span><span class="c1">// Lấy năm</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="c1">// Lấy tháng(0 - 11)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span><span class="w"> </span><span class="c1">// Lấy ngày (1 - 31)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="w"> </span><span class="c1">// Lấy giờ (0 - 23)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">minutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="w"> </span><span class="c1">// Lấy phút (0 -59)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">date</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">month</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">year</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">hours</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">minutes</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4/1/2020 0:56</span>
+</pre></div>
+</div>
+<p>🌕  Bạn có năng lượng vô tận. Bạn vừa hoàn thành thử thách của ngày thứ 3 và bạn đã tiến được 3 bước trên con đường vươn tới sự vĩ đại. Bây giờ hãy làm một số bài tập để giúp cho trí não của bạn.</p>
+</section>
+</section>
+<section id="day-3-bai-tap">
+<h2>💻 Day 3: Bài tập<a class="headerlink" href="#day-3-bai-tap" title="Link to this heading">#</a></h2>
+<section id="bai-tap-level-1">
+<h3>Bài tập: Level 1<a class="headerlink" href="#bai-tap-level-1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Khai báo biến firstName, lastName, country, city, age, isMarried, year và gán giá trị cho nó và sử dụng toán tử typeof để kiểm tra các kiểu dữ liệu khác nhau.</p></li>
+<li><p>Kiểm tra xem kiểu dữ liệu của ‘10’ có giống với 10</p></li>
+<li><p>Kiểm tra parseInt(‘9.8’) có bằng 10 không</p></li>
+<li><p>Giá trị boolean có thể đúng hoặc sai</p>
+<ol class="arabic simple">
+<li><p>Viết ba câu lệnh JavaScript cung cấp giá trị đúng.</p></li>
+<li><p>Viết ba câu lệnh JavaScript cung cấp giá trị sai.</p></li>
+</ol>
+</li>
+<li><p>Hãy tìm ra kết quả của các biểu thức so sánh sau không sử dụng console.log(). Sau khi làm xong, hãy xác nhận nó bằng console.log()</p>
+<ol class="arabic simple">
+<li><p>4 &gt; 3</p></li>
+<li><p>4 &gt;= 3</p></li>
+<li><p>4 &lt; 3</p></li>
+<li><p>4 &lt;= 3</p></li>
+<li><p>4 == 4</p></li>
+<li><p>4 === 4</p></li>
+<li><p>4 != 4</p></li>
+<li><p>4 !== 4</p></li>
+<li><p>4 != ‘4’</p></li>
+<li><p>4 == ‘4’</p></li>
+<li><p>4 === ‘4’</p></li>
+<li><p>Tìm độ dài của python và biệt ngữ và đưa ra một câu lệnh so sánh sai</p></li>
+</ol>
+</li>
+<li><p>Hãy tìm ra kết quả của các biểu thức so sánh sau không sử dụng console.log(). Sau khi làm xong, hãy xác nhận nó bằng console.log()</p>
+<ol class="arabic simple">
+<li><p>4 &gt; 3 &amp;&amp; 10 &lt; 12</p></li>
+<li><p>4 &gt; 3 &amp;&amp; 10 &gt; 12</p></li>
+<li><p>4 &gt; 3 || 10 &lt; 12</p></li>
+<li><p>4 &gt; 3 || 10 &gt; 12</p></li>
+<li><p>!(4 &gt; 3)</p></li>
+<li><p>!(4 &lt; 3)</p></li>
+<li><p>!(false)</p></li>
+<li><p>!(4 &gt; 3 &amp;&amp; 10 &lt; 12)</p></li>
+<li><p>!(4 &gt; 3 &amp;&amp; 10 &gt; 12)</p></li>
+<li><p>!(4 === ‘4’)</p></li>
+<li><p>Không có ‘on’ trong cả 2 từ dragon và python</p></li>
+</ol>
+</li>
+<li><p>Sử dụng đối tượng Date để làm các câu hỏi sau</p>
+<ol class="arabic simple">
+<li><p>Năm nay là năm mấy?</p></li>
+<li><p>Tháng này là tháng mấy dưới dạng số?</p></li>
+<li><p>Hôm nay ngày mấy?</p></li>
+<li><p>Hôm nay là thứ mấy dưới dạng số?</p></li>
+<li><p>Bây giờ mấy giờ?</p></li>
+<li><p>Bây giờ mấy phút?</p></li>
+<li><p>Tìm số giây đã trôi qua kể từ ngày 1, tháng 1, năm 1970 đến bây giờ.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="bai-tap-level-2">
+<h3>Bài tập: Level 2<a class="headerlink" href="#bai-tap-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Viết một đoạn lệnh yêu cầu người dùng nhập độ dài đáy và chiều cao của hình tam giác và tính diện tích của tam giác ấy (diện tích = 0.5 x đáy x cao).</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Enter<span class="w"> </span>base:<span class="w"> </span><span class="m">20</span>
+Enter<span class="w"> </span>height:<span class="w"> </span><span class="m">10</span>
+The<span class="w"> </span>area<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>triangle<span class="w"> </span>is<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</li>
+<li><p>Viết một đoạn lệnh yêu cầu người dùng nhập độ dài cạnh a, cạnh b, cạnh c của hình tam giác và tính chu vi của tam giác ấy (chu vi = a + b + c).</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Enter<span class="w"> </span>side<span class="w"> </span>a:<span class="w"> </span><span class="m">5</span>
+Enter<span class="w"> </span>side<span class="w"> </span>b:<span class="w"> </span><span class="m">4</span>
+Enter<span class="w"> </span>side<span class="w"> </span>c:<span class="w"> </span><span class="m">3</span>
+The<span class="w"> </span>perimeter<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>triangle<span class="w"> </span>is<span class="w"> </span><span class="m">12</span>
+</pre></div>
+</div>
+</li>
+<li><p>Yêu cầu nhập độ dài và độ rộng sau đó tính diện tích hình chữ nhật (diện tích = dài x rộng) và tính chu vi hình chữ nhật (chu vi = 2 x (dài + rộng).</p></li>
+<li><p>Yêu cầu nhập bán kính r sau đó tính diện tích hình tròn (diện tích = pi x r x r) và tính chu vi hình tròn (chu vi = 2 x pi x r), lấy pi = 3.14.</p></li>
+<li><p>Tính hệ số góc, tung độ gốc x và tung độ gốc y của phương trình y = 2x -2</p></li>
+<li><p>Tung độ góc m = (y<sub>2</sub>-y<sub>1</sub>)/(x<sub>2</sub>-x<sub>1</sub>). Tìm tung độ góc giữa 2 điểm (2, 2) và (6, 10).</p></li>
+<li><p>So sánh tung độ góc của câu 5 và câu 6.</p></li>
+<li><p>Tính giá trị của y (y = x<sup>2</sup> + 6x + 9). Hãy thử sử dụng các giá trị x khác nhau và tìm ra giá trị x để y bằng 0.</p></li>
+<li><p>Viết đoạn lệnh yêu cầu người dùng nhập thời gian và mức lương theo giờ. Tính lương của người đó?</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Enter<span class="w"> </span>hours:<span class="w"> </span><span class="m">40</span>
+Enter<span class="w"> </span>rate<span class="w"> </span>per<span class="w"> </span>hour:<span class="w"> </span><span class="m">28</span>
+Your<span class="w"> </span>weekly<span class="w"> </span>earning<span class="w"> </span>is<span class="w"> </span><span class="m">1120</span>
+</pre></div>
+</div>
+</li>
+<li><p>Nếu độ dài tên bạn lớn hơn 7, hiển thị ‘your name is long’ nếu không, hiển thị ‘your name is short’.</p></li>
+<li><p>So sánh tên của bạn và họ của bạn, hiển thị kết quả theo cấu trúc sau.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Your<span class="w"> </span>first<span class="w"> </span>name,<span class="w"> </span>Asabeneh<span class="w"> </span>is<span class="w"> </span>longer<span class="w"> </span>than<span class="w"> </span>your<span class="w"> </span>family<span class="w"> </span>name,<span class="w"> </span>Yetayeh
+</pre></div>
+</div>
+</li>
+<li><p>Tạo 2 biến <em>myAge</em> và <em>yourAge</em> và gán giá trị vào 2 biến ấy. Hiển thị kết quả theo cấu trúc sau.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">myAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">250</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">yourAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>I<span class="w"> </span>am<span class="w"> </span><span class="m">225</span><span class="w"> </span>years<span class="w"> </span>older<span class="w"> </span>than<span class="w"> </span>you.
+</pre></div>
+</div>
+<ol class="arabic" start="13">
+<li><p>Yêu cầu người dùng nhập năm sinh. Nếu người dùng lớn hơn hoặc bằng 18, cho phép người dùng lái xe. Nếu không hiển thị số năm người dùng cần phải chờ để đủ 18.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Enter<span class="w"> </span>birth<span class="w"> </span>year:<span class="w"> </span><span class="m">1995</span>
+You<span class="w"> </span>are<span class="w"> </span><span class="m">25</span>.<span class="w"> </span>You<span class="w"> </span>are<span class="w"> </span>old<span class="w"> </span>enough<span class="w"> </span>to<span class="w"> </span>drive
+
+Enter<span class="w"> </span>birth<span class="w"> </span>year:<span class="w"> </span><span class="m">2005</span>
+You<span class="w"> </span>are<span class="w"> </span><span class="m">15</span>.<span class="w"> </span>You<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>allowed<span class="w"> </span>to<span class="w"> </span>drive<span class="w"> </span>after<span class="w"> </span><span class="m">3</span><span class="w"> </span>years.
+</pre></div>
+</div>
+</li>
+<li><p>Viết đoạn lệnh yêu cầu người dùng nhập số năm. Tính số giây của số năm đã nhập.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Enter<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>years<span class="w"> </span>you<span class="w"> </span>live:<span class="w"> </span><span class="m">100</span>
+You<span class="w"> </span>lived<span class="w"> </span><span class="m">3153600000</span><span class="w"> </span>seconds.
+</pre></div>
+</div>
+<ol class="arabic simple" start="15">
+<li><p>Tạo các định dạng thời gian dễ đọc sử dụng đối tượng Date</p></li>
+<li><p>YYYY-MM-DD HH:mm</p></li>
+<li><p>DD-MM-YYYY HH:mm</p></li>
+<li><p>DD/MM/YYYY HH:mm</p></li>
+</ol>
+</section>
+<section id="bai-tap-level-3">
+<h3>Bài tập: Level 3<a class="headerlink" href="#bai-tap-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Tạo định dạng thời gian có thể đọc được bằng cách sử dụng đối tượng Date. Giờ và phút phải luôn có hai chữ số (7 giờ phải là 07 và 5 phút phải là 05 )</p>
+<ol class="arabic simple">
+<li><p>YYY-MM-DD HH:mm eg. 20120-01-02 07:05</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_datatype.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2. Các kiểu dữ liệu trong JavaScript</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_condition.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4. Cấu trúc câu điều kiện</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans">Booleans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-tri-dung">Giá trị đúng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-tri-sai">Giá trị sai</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#khong-xac-dinh">Không xác định</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null">Null</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu">Toán tử</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-gan">Toán tử gán</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-so-hoc">Toán tử số học</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-so-sanh">Toán tử so sánh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-logic">Toán tử Logic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-tang">Toán tử tăng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-giam">Toán tử giảm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toan-tu-dieu-kien">Toán tử điều kiện</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-uu-tien-toan-tu">Độ ưu tiên toán tử</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phuong-thuc-cua-so">Phương thức cửa sổ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-alert">Hàm alert()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-prompt">Hàm prompt()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-confirm">Hàm confirm()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-date">Đối tượng Date</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tao-mot-doi-tuong-thoi-gian">Tạo một đối tượng thời gian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-nam">Lấy năm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thang">Lấy tháng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-ngay">Lấy ngày</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thu">Lấy thứ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-gio">Lấy giờ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phut">Lấy phút</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-giay">Lấy giây</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-thoi-gian">Lấy thời gian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-3-bai-tap">💻 Day 3: Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-1">Bài tập: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-2">Bài tập: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap-level-3">Bài tập: Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

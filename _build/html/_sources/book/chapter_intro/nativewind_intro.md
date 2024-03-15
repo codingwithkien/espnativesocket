@@ -12,7 +12,7 @@ React Native là một framework phát triển ứng dụng di động mã ngu�
 
 - **Phát triển đa nền tảng:** React Native cho phép bạn phát triển ứng dụng cho cả iOS và Android từ một mã nguồn duy nhất, giúp tiết kiệm thời gian và công sức phát triển.
 
-## TailwindCSS
+## 5.2 TailwindCSS
 
 ![](../assets/images/chapter_intro/tailwindcss.webp)
 

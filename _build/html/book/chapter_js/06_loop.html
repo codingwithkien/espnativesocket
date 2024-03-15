@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Vòng lặp &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/06_loop';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7. Hàm" href="07_function.html" />
+    <link rel="prev" title="4. Cấu trúc câu điều kiện" href="04_condition.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Lời nói đầu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">1. Giới Thiệu Thành Viên Trong Dự Án</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">2. IoT và Ứng Dụng Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">3. WebSocket là Gì và Tại Sao Sử Dụng Trong Dự Án?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">5. React Native và Tailwind CSS cho Giao Diện Người Dùng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Phân tích yêu cầu của dự án</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">1. Đặc Điểm và Chức Năng Của Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">2. Tính Năng Cần Thực Hiện với ESP32 và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">3. Thiết Kế Giao Diện Người Dùng với React Native và Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cài đặt môi trường phát triển</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">1. Arduino IDE và ESP32 Board Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">2. Node.js và npm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/yarn.html">3. Yarn (Tuỳ chọn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">4. React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">5. Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu ngôn ngữ lập trình JavaScript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html">1. Giới thiệu ngôn ngữ lập trình JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_datatype.html">2. Các kiểu dữ liệu trong JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">3. Boolean, Toán tử, Datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">4. Cấu trúc câu điều kiện</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Vòng lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">7. Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_high_function.html">9. Hàm Nâng Cao</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng ứng dụng với React Native và TailwindCSS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">1. Cài Đặt và Cấu Hình Tailwind CSS cho React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">2. Tạo Giao Diện Chính cho Ứng Dụng Di Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/data_ui.html">3. Tích Hợp Giao Diện với Dữ Liệu từ ESP32</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng Server NodeJs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">1. Tạo Một Dự Án Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">2. Cài Đặt Express và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">3. Thiết Lập Server và Kết Nối WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/esp32_native.html">4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/06_loop.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/06_loop.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6. Vòng lặp</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop">for Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop">while loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-while-loop">do while loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-of-loop">for of loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break">break</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue">continue</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-day-6">💻 Exercises:Day 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="vong-lap">
+<h1>6. Vòng lặp<a class="headerlink" href="#vong-lap" title="Link to this heading">#</a></h1>
+<section id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
+<p>Most of the activities we do in life are full of repetitions. Imagine if I ask you to print out from 0 to 100 using console.log(). To implement this simple task it may take you 2 to 5 minutes, such kind of tedious and repetitive task can be carried out using loop. If you prefer watching the videos, you can checkout the <a class="reference external" href="https://www.youtube.com/channel/UCM4xOopkYiPwJqyKsSqL9mw">video tutorials</a></p>
+<p>In programming languages to carry out repetitive task we use different kinds of loops. The following examples are the commonly used loops in JavaScript and other programming languages.</p>
+<section id="for-loop">
+<h3>for Loop<a class="headerlink" href="#for-loop" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// For loop structure</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">initialization</span><span class="p">,</span><span class="w"> </span><span class="nx">condition</span><span class="p">,</span><span class="w"> </span><span class="nx">increment</span><span class="o">/</span><span class="nx">decrement</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">// code goes here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 0 1 2 3 4 5</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">--</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 5 4 3 2 1 0</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb"> * </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb"> = </span><span class="si">${</span><span class="nx">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="m">1</span><span class="w"> </span>*<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="m">2</span><span class="w"> </span>*<span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
+<span class="m">3</span><span class="w"> </span>*<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span>
+<span class="m">4</span><span class="w"> </span>*<span class="w"> </span><span class="nv">4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span>
+<span class="m">5</span><span class="w"> </span>*<span class="w"> </span><span class="nv">5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Iceland&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">newArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="c1">// [&quot;FINLAND&quot;, &quot;SWEDEN&quot;, &quot;DENMARK&quot;, &quot;NORWAY&quot;, &quot;ICELAND&quot;]</span>
+</pre></div>
+</div>
+<p>Adding all elements in the array</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">sum</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w">  </span><span class="c1">// can be shorten, sum += numbers[i]</span>
+
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w">  </span><span class="c1">// 15</span>
+</pre></div>
+</div>
+<p>Creating a new array based on the existing array</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">newArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="w"> </span><span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArr</span><span class="p">)</span><span class="w">  </span><span class="c1">// [1, 4, 9, 16, 25]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Iceland&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">newArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArr</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;FINLAND&quot;, &quot;SWEDEN&quot;, &quot;NORWAY&quot;, &quot;DENMARK&quot;, &quot;ICELAND&quot;]</span>
+</pre></div>
+</div>
+</section>
+<section id="while-loop">
+<h3>while loop<a class="headerlink" href="#while-loop" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">i</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="c1">// 0 1 2 3 4 5</span>
+</pre></div>
+</div>
+</section>
+<section id="do-while-loop">
+<h3>do while loop<a class="headerlink" href="#do-while-loop" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">i</span><span class="o">++</span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+
+<span class="c1">// 0 1 2 3 4 5</span>
+</pre></div>
+</div>
+</section>
+<section id="for-of-loop">
+<h3>for of loop<a class="headerlink" href="#for-of-loop" title="Link to this heading">#</a></h3>
+<p>We use for of loop for arrays. It is very hand way to iterate through an array if we are not interested in the index of each element in the array.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// code goes here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">numbers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 1 2 3 4 5</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">numbers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 1 4 9 16 25</span>
+
+<span class="c1">// adding all the numbers in the array</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">numbers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="w">  </span>
+<span class="w">	</span><span class="c1">// can be also shorten like this, sum += num</span>
+<span class="w">  </span><span class="c1">// after this we will use the shorter synthax(+=, -=, *=, /= etc)</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w"> </span><span class="c1">// 15</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">webTechs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;MongoDB&#39;</span>
+<span class="p">]</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">tech</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">webTechs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tech</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="c1">// HTML CSS JAVASCRIPT REACT NODE MONGODB</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">tech</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">webTechs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tech</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span><span class="w"> </span><span class="c1">// get only the first letter of each element,  H C J R N M</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Iceland&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">countries</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">newArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">country</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArr</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;FINLAND&quot;, &quot;SWEDEN&quot;, &quot;NORWAY&quot;, &quot;DENMARK&quot;, &quot;ICELAND&quot;]</span>
+</pre></div>
+</div>
+</section>
+<section id="break">
+<h3>break<a class="headerlink" href="#break" title="Link to this heading">#</a></h3>
+<p>Break is used to interrupt a loop.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">3</span><span class="p">){</span>
+<span class="w">    </span><span class="k">break</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 0 1 2</span>
+</pre></div>
+</div>
+<p>The above code stops if 3 found in the iteration process.</p>
+</section>
+<section id="continue">
+<h3>continue<a class="headerlink" href="#continue" title="Link to this heading">#</a></h3>
+<p>We use the keyword <em>continue</em> to skip a certain iterations.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">3</span><span class="p">){</span>
+<span class="w">    </span><span class="k">continue</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 0 1 2 4 5</span>
+</pre></div>
+</div>
+<p>🌕 You are so brave, you made it to this far. Now, you have gained the power to automate repetitive and tedious tasks. You have just completed day 6 challenges and you are 6 steps a head in to your way to greatness. Now do some exercises for your brain and for your muscle.</p>
+</section>
+</section>
+<section id="exercises-day-6">
+<h2>💻 Exercises:Day 6<a class="headerlink" href="#exercises-day-6" title="Link to this heading">#</a></h2>
+<section id="exercises-level-1">
+<h3>Exercises: Level 1<a class="headerlink" href="#exercises-level-1" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;Albania&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Bolivia&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Ethiopia&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Hungary&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Ireland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Japan&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Kenya&#39;</span>
+<span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">webTechs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;MongoDB&#39;</span>
+<span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">mernStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Iterate 0 to 10 using for loop, do the same using while and do while loop</p></li>
+<li><p>Iterate 10 to 0 using for loop, do the same using while and do while loop</p></li>
+<li><p>Iterate 0 to n using for loop</p></li>
+<li><p>Write a loop that makes the following pattern using console.log():</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="err">#</span>
+<span class="w">    </span><span class="err">##</span>
+<span class="w">    </span><span class="err">###</span>
+<span class="w">    </span><span class="err">####</span>
+<span class="w">    </span><span class="err">#####</span>
+<span class="w">    </span><span class="err">######</span>
+<span class="w">    </span><span class="err">#######</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use loop to print the following pattern:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="w"> </span>x<span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="m">1</span><span class="w"> </span>x<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="m">2</span><span class="w"> </span>x<span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
+<span class="m">3</span><span class="w"> </span>x<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span>
+<span class="m">4</span><span class="w"> </span>x<span class="w"> </span><span class="nv">4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span>
+<span class="m">5</span><span class="w"> </span>x<span class="w"> </span><span class="nv">5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span>
+<span class="m">6</span><span class="w"> </span>x<span class="w"> </span><span class="nv">6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">36</span>
+<span class="m">7</span><span class="w"> </span>x<span class="w"> </span><span class="nv">7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">49</span>
+<span class="m">8</span><span class="w"> </span>x<span class="w"> </span><span class="nv">8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">64</span>
+<span class="m">9</span><span class="w"> </span>x<span class="w"> </span><span class="nv">9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">81</span>
+<span class="m">10</span><span class="w"> </span>x<span class="w"> </span><span class="nv">10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using loop print the following pattern</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>i<span class="w">    </span>i^2<span class="w">   </span>i^3
+<span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">     </span><span class="m">0</span>
+<span class="w"> </span><span class="m">1</span><span class="w">    </span><span class="m">1</span><span class="w">     </span><span class="m">1</span>
+<span class="w"> </span><span class="m">2</span><span class="w">    </span><span class="m">4</span><span class="w">     </span><span class="m">8</span>
+<span class="w"> </span><span class="m">3</span><span class="w">    </span><span class="m">9</span><span class="w">     </span><span class="m">27</span>
+<span class="w"> </span><span class="m">4</span><span class="w">    </span><span class="m">16</span><span class="w">    </span><span class="m">64</span>
+<span class="w"> </span><span class="m">5</span><span class="w">    </span><span class="m">25</span><span class="w">    </span><span class="m">125</span>
+<span class="w"> </span><span class="m">6</span><span class="w">    </span><span class="m">36</span><span class="w">    </span><span class="m">216</span>
+<span class="w"> </span><span class="m">7</span><span class="w">    </span><span class="m">49</span><span class="w">    </span><span class="m">343</span>
+<span class="w"> </span><span class="m">8</span><span class="w">    </span><span class="m">64</span><span class="w">    </span><span class="m">512</span>
+<span class="w"> </span><span class="m">9</span><span class="w">    </span><span class="m">81</span><span class="w">    </span><span class="m">729</span>
+<span class="w"> </span><span class="m">10</span><span class="w">   </span><span class="m">100</span><span class="w">   </span><span class="m">1000</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use for loop to iterate from 0 to 100 and print only even numbers</p></li>
+<li><p>Use for loop to iterate from 0 to 100 and print only odd numbers</p></li>
+<li><p>Use for loop to iterate from 0 to 100 and print only prime numbers</p></li>
+<li><p>Use for loop to iterate from 0 to 100 and print the sum of all numbers.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>The<span class="w"> </span>sum<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>numbers<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span><span class="m">100</span><span class="w"> </span>is<span class="w"> </span><span class="m">5050</span>.
+</pre></div>
+</div>
+</li>
+<li><p>Use for loop to iterate from 0 to 100 and print the sum of all evens and the sum of all odds.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>The<span class="w"> </span>sum<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>evens<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span><span class="m">100</span><span class="w"> </span>is<span class="w"> </span><span class="m">2550</span>.<span class="w"> </span>And<span class="w"> </span>the<span class="w"> </span>sum<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>odds<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span><span class="m">100</span><span class="w"> </span>is<span class="w"> </span><span class="m">2500</span>.
+</pre></div>
+</div>
+</li>
+<li><p>Use for loop to iterate from 0 to 100 and print the sum of all evens and the sum of all odds. Print sum of evens and sum of odds as array</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="o">[</span><span class="m">2550</span>,<span class="w"> </span><span class="m">2500</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Develop a small script which generate array of 5 random numbers</p></li>
+<li><p>Develop a small script which generate array of 5 random numbers and the numbers must be unique</p></li>
+<li><p>Develop a small script which generate a six characters random id:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>5j2khz
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercises-level-2">
+<h3>Exercises: Level 2<a class="headerlink" href="#exercises-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Develop a small script which generate any number of characters random id:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>fe3jo1gl124g
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>xkqci4utda1lmbelpkm03rba
+</pre></div>
+</div>
+</li>
+<li><p>Write a script which generates a random hexadecimal number.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;#ee33df&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Write a script which generates a random rgb color number.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rgb<span class="o">(</span><span class="m">240</span>,180,80<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using the above countries array, create the following new array.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;ALBANIA&quot;</span>,<span class="w"> </span><span class="s2">&quot;BOLIVIA&quot;</span>,<span class="w"> </span><span class="s2">&quot;CANADA&quot;</span>,<span class="w"> </span><span class="s2">&quot;DENMARK&quot;</span>,<span class="w"> </span><span class="s2">&quot;ETHIOPIA&quot;</span>,<span class="w"> </span><span class="s2">&quot;FINLAND&quot;</span>,<span class="w"> </span><span class="s2">&quot;GERMANY&quot;</span>,<span class="w"> </span><span class="s2">&quot;HUNGARY&quot;</span>,<span class="w"> </span><span class="s2">&quot;IRELAND&quot;</span>,<span class="w"> </span><span class="s2">&quot;JAPAN&quot;</span>,<span class="w"> </span><span class="s2">&quot;KENYA&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using the above countries array, create an array for countries length’.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">7</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the countries array to create the following array of arrays:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="o">[</span>
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Albania&#39;</span>,<span class="w"> </span><span class="s1">&#39;ALB&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Bolivia&#39;</span>,<span class="w"> </span><span class="s1">&#39;BOL&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Canada&#39;</span>,<span class="w"> </span><span class="s1">&#39;CAN&#39;</span>,<span class="w"> </span><span class="m">6</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Denmark&#39;</span>,<span class="w"> </span><span class="s1">&#39;DEN&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Ethiopia&#39;</span>,<span class="w"> </span><span class="s1">&#39;ETH&#39;</span>,<span class="w"> </span><span class="m">8</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Finland&#39;</span>,<span class="w"> </span><span class="s1">&#39;FIN&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Germany&#39;</span>,<span class="w"> </span><span class="s1">&#39;GER&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Hungary&#39;</span>,<span class="w"> </span><span class="s1">&#39;HUN&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Ireland&#39;</span>,<span class="w"> </span><span class="s1">&#39;IRE&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Iceland&#39;</span>,<span class="w"> </span><span class="s1">&#39;ICE&#39;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Japan&#39;</span>,<span class="w"> </span><span class="s1">&#39;JAP&#39;</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>,
+<span class="w">  </span><span class="o">[</span><span class="s1">&#39;Kenya&#39;</span>,<span class="w"> </span><span class="s1">&#39;KEN&#39;</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>In above countries array, check if there is a country or countries containing the word ‘land’. If there are countries containing ‘land’, print it as array. If there is no country containing the word ‘land’, print ‘All these countries are without land’.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;Finland&#39;</span>,<span class="s1">&#39;Ireland&#39;</span>,<span class="w"> </span><span class="s1">&#39;Iceland&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>In above countries array, check if there is  a country or countries end with a substring ‘ia’. If there are countries end with, print it as array. If there is no country containing the word ‘ai’, print ‘These are countries ends without ia’.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;Albania&#39;</span>,<span class="w"> </span><span class="s1">&#39;Bolivia&#39;</span>,<span class="s1">&#39;Ethiopia&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using the above countries array, find the country containing the biggest number of characters.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Ethiopia
+</pre></div>
+</div>
+</li>
+<li><p>Using the above countries array, find the country containing only 5 characters.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;Japan&#39;</span>,<span class="w"> </span><span class="s1">&#39;Kenya&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Find the longest word in the webTechs array</p></li>
+<li><p>Use the webTechs array to create the following array of arrays:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span><span class="s2">&quot;HTML&quot;</span>,<span class="w"> </span><span class="m">4</span><span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="s2">&quot;CSS&quot;</span>,<span class="w"> </span><span class="m">3</span><span class="o">]</span>,<span class="o">[</span><span class="s2">&quot;JavaScript&quot;</span>,<span class="w"> </span><span class="m">10</span><span class="o">]</span>,<span class="o">[</span><span class="s2">&quot;React&quot;</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>,<span class="o">[</span><span class="s2">&quot;Redux&quot;</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>,<span class="o">[</span><span class="s2">&quot;Node&quot;</span>,<span class="w"> </span><span class="m">4</span><span class="o">]</span>,<span class="o">[</span><span class="s2">&quot;MongoDB&quot;</span>,<span class="w"> </span><span class="m">7</span><span class="o">]]</span>
+</pre></div>
+</div>
+</li>
+<li><p>An application created using MongoDB, Express, React and Node is called a MERN stack app. Create the acronym MERN by using the array mernStack</p></li>
+<li><p>Iterate through the array, [“HTML”, “CSS”, “JS”, “React”, “Redux”, “Node”, “Express”, “MongoDB”] using a for loop or for of loop and print out the items.</p></li>
+<li><p>This is a fruit array , [‘banana’, ‘orange’, ‘mango’, ‘lemon’] reverse the order using loop without using a reverse method.</p></li>
+<li><p>Print all the elements of array as shown below.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">fullStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>HTML
+<span class="w">  </span>CSS
+<span class="w">  </span>JS
+<span class="w">  </span>REACT
+<span class="w">  </span>NODE
+<span class="w">  </span>EXPRESS
+<span class="w">  </span>MONGODB
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercises-level-3">
+<h3>Exercises: Level 3<a class="headerlink" href="#exercises-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Copy countries array(Avoid mutation)</p></li>
+<li><p>Arrays are mutable. Create a copy of array which does not modify the original. Sort the copied array and store in a variable sortedCountries</p></li>
+<li><p>Sort the webTechs array and mernStack array</p></li>
+<li><p>Extract all the countries contain the word ‘land’ from the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a> and print it as array</p></li>
+<li><p>Find the country containing the hightest number of characters in the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a></p></li>
+<li><p>Extract all the countries contain the word ‘land’ from the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a> and print it as array</p></li>
+<li><p>Extract all the countries containing only four characters from the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a> and print it as array</p></li>
+<li><p>Extract all the countries containing two or more words from the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a> and print it as array</p></li>
+<li><p>Reverse the <a class="reference external" href="https://github.com/Asabeneh/30DaysOfJavaScript/tree/master/data/countries.js">countries array</a> and capitalize each country and stored it as an array</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_condition.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4. Cấu trúc câu điều kiện</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_function.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">7. Hàm</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop">for Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop">while loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-while-loop">do while loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-of-loop">for of loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break">break</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue">continue</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-day-6">💻 Exercises:Day 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

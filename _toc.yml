@@ -30,6 +30,16 @@ parts:
       - file: book/chapter_install/yarn
       - file: book/chapter_install/native_cli
       - file: book/chapter_install/tailwindcss
+  - caption: Giới thiệu ngôn ngữ lập trình JavaScript
+    chapters:
+      - file: book/chapter_js/01_intro_js
+      - file: book/chapter_js/02_datatype
+      - file: book/chapter_js/03_boolean_operator_date
+      - file: book/chapter_js/04_condition
+      - file: book/chapter_js/06_loop
+      - file: book/chapter_js/07_function
+      - file: book/chapter_js/05_object
+      - file: book/chapter_js/09_high_function
   - caption: Xây dựng ứng dụng với React Native và TailwindCSS
     chapters:
       - file: book/chapter_app/create_app
