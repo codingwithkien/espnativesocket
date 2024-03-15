@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Set và Map &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/10_set_map';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="12. Biểu Thức Chính Quy" href="12_regular_expression.html" />
+    <link rel="prev" title="7. Hàm" href="07_function.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Lời nói đầu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">1. Giới Thiệu Thành Viên Trong Dự Án</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">2. IoT và Ứng Dụng Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">3. WebSocket là Gì và Tại Sao Sử Dụng Trong Dự Án?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">5. React Native và Tailwind CSS cho Giao Diện Người Dùng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Phân tích yêu cầu của dự án</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">1. Đặc Điểm và Chức Năng Của Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">2. Tính Năng Cần Thực Hiện với ESP32 và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">3. Thiết Kế Giao Diện Người Dùng với React Native và Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cài đặt môi trường phát triển</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">1. Arduino IDE và ESP32 Board Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">2. Node.js và npm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/yarn.html">3. Yarn (Tuỳ chọn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">4. React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">5. Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu ngôn ngữ lập trình JavaScript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html">1. Giới thiệu ngôn ngữ lập trình JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_datatype.html">2. Các kiểu dữ liệu trong JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">3. Boolean, Toán tử, Datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">4. Cấu trúc câu điều kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">6. Vòng lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">7. Hàm</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_regular_expression.html">12. Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">13. Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">14. Xử lý lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">15. Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">16. JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_web_storage.html">17. Web Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">18. Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_dom.html">19. DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">20. Event</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng ứng dụng với React Native và TailwindCSS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">1. Cài Đặt và Cấu Hình Tailwind CSS cho React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">2. Tạo Giao Diện Chính cho Ứng Dụng Di Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/data_ui.html">3. Tích Hợp Giao Diện với Dữ Liệu từ ESP32</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng Server NodeJs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">1. Tạo Một Dự Án Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">2. Cài Đặt Express và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">3. Thiết Lập Server và Kết Nối WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/esp32_native.html">4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/10_set_map.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/10_set_map.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10. Set và Map</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-set">Creating an empty set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-set-from-array">Creating set from array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-an-element-to-a-set">Adding an element to a set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-an-element-a-set">Deleting an element a set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-an-element-in-the-set">Checking an element in the set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-set">Clearing the set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union-of-sets">Union of sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection-of-sets">Intersection of sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-of-sets">Difference of sets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-map">Creating an empty Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-map-from-array">Creating an Map from array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-values-to-the-map">Adding values to the Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-a-value-from-map">Getting a value from Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-key-in-map">Checking key in Map</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises:Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises:Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises:Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="set-va-map">
+<h1>10. Set và Map<a class="headerlink" href="#set-va-map" title="Link to this heading">#</a></h1>
+<section id="set">
+<h2>Set<a class="headerlink" href="#set" title="Link to this heading">#</a></h2>
+<p>Set is  a collection of elements. Set can only contains unique elements.
+Let us see how to create a set in the section below.</p>
+<section id="creating-an-empty-set">
+<h3>Creating an empty set<a class="headerlink" href="#creating-an-empty-set" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">companies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="o">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-set-from-array">
+<h3>Creating set from array<a class="headerlink" href="#creating-set-from-array" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">languages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Finnish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">setOfLanguages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">languages</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">setOfLanguages</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;English&quot;</span>,<span class="w"> </span><span class="s2">&quot;Finnish&quot;</span>,<span class="w"> </span><span class="s2">&quot;French&quot;</span>,<span class="w"> </span><span class="s2">&quot;Spanish&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Set is an iterable object and we can iterate through each elements.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">languages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Finnish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">setOfLanguages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">languages</span><span class="p">)</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">language</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">setOfLanguages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">language</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>English
+<span class="w">  </span>Finnish
+<span class="w">  </span>French
+<span class="w">  </span>Spanish
+</pre></div>
+</div>
+</section>
+<section id="adding-an-element-to-a-set">
+<h3>Adding an element to a set<a class="headerlink" href="#adding-an-element-to-a-set" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">companies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">()</span><span class="w"> </span><span class="c1">// creating an empty set</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0</span>
+
+<span class="nx">companies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;Google&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// add element to the set</span>
+<span class="nx">companies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;Facebook&#39;</span><span class="p">)</span>
+<span class="nx">companies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;Amazon&#39;</span><span class="p">)</span>
+<span class="nx">companies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;Oracle&#39;</span><span class="p">)</span>
+<span class="nx">companies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;Microsoft&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="c1">// 5 elements in the set</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Google&quot;</span>,<span class="w"> </span><span class="s2">&quot;Facebook&quot;</span>,<span class="w"> </span><span class="s2">&quot;Amazon&quot;</span>,<span class="w"> </span><span class="s2">&quot;Oracle&quot;</span>,<span class="w"> </span><span class="s2">&quot;Microsoft&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>We can also use loop to add element to a set.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">companies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Facebook&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Amazon&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Microsoft&#39;</span><span class="p">]</span>
+<span class="nx">setOfCompanies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">()</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">company</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">companies</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setOfCompanies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">company</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Google&quot;</span>,<span class="w"> </span><span class="s2">&quot;Facebook&quot;</span>,<span class="w"> </span><span class="s2">&quot;Amazon&quot;</span>,<span class="w"> </span><span class="s2">&quot;Oracle&quot;</span>,<span class="w"> </span><span class="s2">&quot;Microsoft&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="deleting-an-element-a-set">
+<h3>Deleting an element a set<a class="headerlink" href="#deleting-an-element-a-set" title="Link to this heading">#</a></h3>
+<p>We can delete an element from a set using a delete method.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s1">&#39;Google&#39;</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4 elements left in the set</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-an-element-in-the-set">
+<h3>Checking an element in the set<a class="headerlink" href="#checking-an-element-in-the-set" title="Link to this heading">#</a></h3>
+<p>The has method can help to know if a certain element exists in a set.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;Apple&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;Facebook&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="clearing-the-set">
+<h3>Clearing the set<a class="headerlink" href="#clearing-the-set" title="Link to this heading">#</a></h3>
+<p>It removes all the elements from a set.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">companies</span><span class="p">.</span><span class="nx">clear</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="o">{}</span>
+</pre></div>
+</div>
+<p>See the example below to learn how to use set.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">languages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Finnish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;English&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;French&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">langSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">languages</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">langSet</span><span class="p">)</span><span class="w"> </span><span class="c1">// Set(4) {&quot;English&quot;, &quot;Finnish&quot;, &quot;French&quot;, &quot;Spanish&quot;}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">langSet</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">langSet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">filteredLang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">languages</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">lng</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">lng</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">l</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">filteredLang</span><span class="p">)</span><span class="w"> </span><span class="c1">// [&quot;English&quot;, &quot;English&quot;, &quot;English&quot;]</span>
+<span class="w">  </span><span class="nx">counts</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="w"> </span><span class="nx">lang</span><span class="o">:</span><span class="w"> </span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="nx">filteredLang</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="p">})</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">lang</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;English&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">lang</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finnish&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">lang</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;French&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">lang</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Other use case of set. For instance to count unique item in an array.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">setOfNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">numbers</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">setOfNumbers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="m">5</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="m">4</span><span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="union-of-sets">
+<h3>Union of sets<a class="headerlink" href="#union-of-sets" title="Link to this heading">#</a></h3>
+<p>To find a union to two sets can be achieved using spread operator. Lets find the union of set A and set B (A U B)</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">b</span><span class="p">]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">C</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">6</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">5</span>,6<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="intersection-of-sets">
+<h3>Intersection of sets<a class="headerlink" href="#intersection-of-sets" title="Link to this heading">#</a></h3>
+<p>To find an intersection of two sets can be achieved using filter. Lets find the intersection of set A and set B (A ∩ B)</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">B</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">num</span><span class="p">))</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">C</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">5</span><span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="difference-of-sets">
+<h3>Difference of sets<a class="headerlink" href="#difference-of-sets" title="Link to this heading">#</a></h3>
+<p>To find an the difference between two sets can be achieved using filter. Lets find the different of set A and set B (A \ B)</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">!</span><span class="nx">B</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">num</span><span class="p">))</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">C</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Set<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="o">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="map">
+<h2>Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h2>
+<section id="creating-an-empty-map">
+<h3>Creating an empty Map<a class="headerlink" href="#creating-an-empty-map" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Map<span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="o">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-an-map-from-array">
+<h3>Creating an Map from array<a class="headerlink" href="#creating-an-map-from-array" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Stockholm&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Oslo&#39;</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">(</span><span class="nx">countries</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Map<span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Finland&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Helsinki&quot;</span>,<span class="w"> </span><span class="s2">&quot;Sweden&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Stockholm&quot;</span>,<span class="w"> </span><span class="s2">&quot;Norway&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Oslo&quot;</span><span class="o">}</span>
+<span class="m">3</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-values-to-the-map">
+<h3>Adding values to the Map<a class="headerlink" href="#adding-values-to-the-map" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countriesMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countriesMap</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0</span>
+<span class="nx">countriesMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">)</span>
+<span class="nx">countriesMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Stockholm&#39;</span><span class="p">)</span>
+<span class="nx">countriesMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Oslo&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countriesMap</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countriesMap</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Map<span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Finland&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Helsinki&quot;</span>,<span class="w"> </span><span class="s2">&quot;Sweden&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Stockholm&quot;</span>,<span class="w"> </span><span class="s2">&quot;Norway&quot;</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s2">&quot;Oslo&quot;</span><span class="o">}</span>
+<span class="m">3</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-a-value-from-map">
+<h3>Getting a value from Map<a class="headerlink" href="#getting-a-value-from-map" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countriesMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Finland&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Helsinki
+</pre></div>
+</div>
+</section>
+<section id="checking-key-in-map">
+<h3>Checking key in Map<a class="headerlink" href="#checking-key-in-map" title="Link to this heading">#</a></h3>
+<p>Check if a key exists in a map using <em>has</em> method. It returns <em>true</em> or <em>false</em>.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countriesMap</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;Finland&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Getting all values from map using loop</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">country</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">countriesMap</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;Finland&quot;</span>,<span class="w"> </span><span class="s2">&quot;Helsinki&quot;</span><span class="o">]</span>
+<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;Sweden&quot;</span>,<span class="w"> </span><span class="s2">&quot;Stockholm&quot;</span><span class="o">]</span>
+<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;Norway&quot;</span>,<span class="w"> </span><span class="s2">&quot;Oslo&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">country</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">countriesMap</span><span class="p">){</span>
+<span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Finland<span class="w"> </span>Helsinki
+Sweden<span class="w"> </span>Stockholm
+Norway<span class="w"> </span>Oslo
+</pre></div>
+</div>
+<p>🌕 You established a big milestone, you are unstoppable. Keep going! You have just completed day 10 challenges and you are 10 steps a head in to your way to greatness. Now do some exercises for your brain and for your muscle.</p>
+</section>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercises-level-1">
+<h3>Exercises:Level 1<a class="headerlink" href="#exercises-level-1" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Norway&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>create an empty set</p></li>
+<li><p>Create a set containing 0 to 10 using loop</p></li>
+<li><p>Remove an element from a set</p></li>
+<li><p>Clear a set</p></li>
+<li><p>Create a set of 5 string elements from array</p></li>
+<li><p>Create a map of countries and number of characters of a country</p></li>
+</ol>
+</section>
+<section id="exercises-level-2">
+<h3>Exercises:Level 2<a class="headerlink" href="#exercises-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Find a union b</p></li>
+<li><p>Find a intersection b</p></li>
+<li><p>Find a with b</p></li>
+</ol>
+</section>
+<section id="exercises-level-3">
+<h3>Exercises:Level 3<a class="headerlink" href="#exercises-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How many languages are there in the countries object file.</p></li>
+<li><p>*** Use the countries data to find the 10 most spoken languages:</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="c1">// Your output should look like this</span>
+<span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mostSpokenLanguages</span><span class="p">(</span><span class="nx">countries</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span>
+<span class="w">   </span><span class="p">[</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">English</span><span class="o">:</span><span class="w"> </span><span class="mf">91</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">French</span><span class="o">:</span><span class="w"> </span><span class="mf">45</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Arabic</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Spanish</span><span class="o">:</span><span class="w"> </span><span class="mf">24</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Russian</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Portuguese</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Dutch</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">German</span><span class="o">:</span><span class="w"> </span><span class="mf">7</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Chinese</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Swahili</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="nx">Serbian</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+
+<span class="w">  </span><span class="c1">// Your output should look like this</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mostSpokenLanguages</span><span class="p">(</span><span class="nx">countries</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">))</span>
+<span class="w">  </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">English</span><span class="o">:</span><span class="mf">91</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">French</span><span class="o">:</span><span class="mf">45</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">Arabic</span><span class="o">:</span><span class="mf">25</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_function.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7. Hàm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12_regular_expression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">12. Biểu Thức Chính Quy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-set">Creating an empty set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-set-from-array">Creating set from array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-an-element-to-a-set">Adding an element to a set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-an-element-a-set">Deleting an element a set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-an-element-in-the-set">Checking an element in the set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-set">Clearing the set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union-of-sets">Union of sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection-of-sets">Intersection of sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-of-sets">Difference of sets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-map">Creating an empty Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-map-from-array">Creating an Map from array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-values-to-the-map">Adding values to the Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-a-value-from-map">Getting a value from Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-key-in-map">Checking key in Map</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises:Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises:Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises:Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

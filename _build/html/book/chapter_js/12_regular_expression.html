@@ -1,0 +1,1083 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>12. Biểu Thức Chính Quy &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/12_regular_expression';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="13. Console" href="13_console.html" />
+    <link rel="prev" title="10. Set và Map" href="10_set_map.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Lời nói đầu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">1. Giới Thiệu Thành Viên Trong Dự Án</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">2. IoT và Ứng Dụng Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">3. WebSocket là Gì và Tại Sao Sử Dụng Trong Dự Án?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">4. ESP32 và Lợi Ích Trong Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">5. React Native và Tailwind CSS cho Giao Diện Người Dùng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Phân tích yêu cầu của dự án</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">1. Đặc Điểm và Chức Năng Của Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">2. Tính Năng Cần Thực Hiện với ESP32 và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">3. Thiết Kế Giao Diện Người Dùng với React Native và Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cài đặt môi trường phát triển</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">1. Arduino IDE và ESP32 Board Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">2. Node.js và npm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/yarn.html">3. Yarn (Tuỳ chọn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">4. React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">5. Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Giới thiệu ngôn ngữ lập trình JavaScript</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html">1. Giới thiệu ngôn ngữ lập trình JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_datatype.html">2. Các kiểu dữ liệu trong JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">3. Boolean, Toán tử, Datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">4. Cấu trúc câu điều kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">6. Vòng lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">7. Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_set_map.html">10. Set và Map</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">13. Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">14. Xử lý lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">15. Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">16. JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_web_storage.html">17. Web Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">18. Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_dom.html">19. DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">20. Event</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng ứng dụng với React Native và TailwindCSS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">1. Cài Đặt và Cấu Hình Tailwind CSS cho React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">2. Tạo Giao Diện Chính cho Ứng Dụng Di Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/data_ui.html">3. Tích Hợp Giao Diện với Dữ Liệu từ ESP32</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Xây dựng Server NodeJs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">1. Tạo Một Dự Án Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">2. Cài Đặt Express và WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">3. Thiết Lập Server và Kết Nối WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/esp32_native.html">4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/12_regular_expression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/12_regular_expression.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>12. Biểu Thức Chính Quy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexp-parameters">RegExp parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern">Pattern</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flags">Flags</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pattern-with-regexp-constructor">Creating a pattern with RegExp Constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pattern-without-regexp-constructor">Creating a pattern without RegExp Constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexpp-object-methods">RegExpp Object Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-a-match">Testing for  a match</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-containing-all-of-the-match">Array containing all of the match</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replacing-a-substring">Replacing a substring</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-bracket">Square Bracket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-character-in-regexp">Escape character(\) in RegExp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-or-more-times">One or more times(+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#period">Period(.)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-or-more-times">Zero or more times(*)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-or-one-times">Zero or one times(?)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifier-in-regexp">Quantifier in RegExp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">Cart ^</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-match">Exact match</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">💻 Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bieu-thuc-chinh-quy">
+<h1>12. Biểu Thức Chính Quy<a class="headerlink" href="#bieu-thuc-chinh-quy" title="Link to this heading">#</a></h1>
+<section id="regular-expressions">
+<h2>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Link to this heading">#</a></h2>
+<p>A regular expression or RegExp is a small programming language that helps to find pattern in data. A RegExp can be used to check if some pattern exists in a different data types. To use RegExp in JavaScript either we use RegExp constructor or we can declare a RegExp pattern using two forward slashes followed by a flag. We can create a pattern in two ways.</p>
+<p>To declare a string we use a single quote, double quote a backtick to declare a regular expression we use two forward slashes and an optional flag. The flag could be g, i, m, s, u or y.</p>
+<section id="regexp-parameters">
+<h3>RegExp parameters<a class="headerlink" href="#regexp-parameters" title="Link to this heading">#</a></h3>
+<p>A regular expression takes two parameters. One required search pattern and an optional flag.</p>
+<section id="pattern">
+<h4>Pattern<a class="headerlink" href="#pattern" title="Link to this heading">#</a></h4>
+<p>A pattern could be a text or any form of pattern which some sort of similarity. For instance the word spam in an email could be a pattern we are interested to look for in an email or a phone number format number might be our interest to look for.</p>
+</section>
+<section id="flags">
+<h4>Flags<a class="headerlink" href="#flags" title="Link to this heading">#</a></h4>
+<p>Flags are optional parameters in a regular expression which determine the type of searching. Let us see some of the flags:</p>
+<ul class="simple">
+<li><p>g: a global flag which means looking for a pattern in whole text</p></li>
+<li><p>i: case insensitive flag(it searches for both lowercase and uppercase)</p></li>
+<li><p>m: multiline</p></li>
+</ul>
+</section>
+</section>
+<section id="creating-a-pattern-with-regexp-constructor">
+<h3>Creating a pattern with RegExp Constructor<a class="headerlink" href="#creating-a-pattern-with-regexp-constructor" title="Link to this heading">#</a></h3>
+<p>Declaring regular expression without global flag and case insensitive flag.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// without flag</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;love&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Declaring regular expression with global flag and case insensitive flag.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;love&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gi&#39;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span><span class="w"> </span><span class="nx">flag</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Declaring a regex pattern using RegExp object. Writing the pattern and the flag inside the RegExp constructor</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">,</span><span class="s1">&#39;gi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-pattern-without-regexp-constructor">
+<h3>Creating a pattern without RegExp Constructor<a class="headerlink" href="#creating-a-pattern-without-regexp-constructor" title="Link to this heading">#</a></h3>
+<p>Declaring regular expression with global flag and case insensitive flag.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="o">=</span><span class="w"> </span><span class="sr">/love/gi</span>
+</pre></div>
+</div>
+<p>The above regular expression is the same as the one which we created with RegExp constructor</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">regEx</span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;love&#39;</span><span class="p">,</span><span class="s1">&#39;gi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="regexpp-object-methods">
+<h3>RegExpp Object Methods<a class="headerlink" href="#regexpp-object-methods" title="Link to this heading">#</a></h3>
+<p>Let us see some of RegExp methods</p>
+<section id="testing-for-a-match">
+<h4>Testing for  a match<a class="headerlink" href="#testing-for-a-match" title="Link to this heading">#</a></h4>
+<p><em>test()</em>:Tests for a match in a string. It returns true or false.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+<section id="array-containing-all-of-the-match">
+<h4>Array containing all of the match<a class="headerlink" href="#array-containing-all-of-the-match" title="Link to this heading">#</a></h4>
+<p><em>match()</em>:Returns an array containing all of the matches, including capturing groups, or null if no match is found.
+If we do not use a global flag, match() returns an array containing the pattern, index, input and group.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;love&quot;</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>input:<span class="w"> </span><span class="s2">&quot;I love JavaScript&quot;</span>,<span class="w"> </span>groups:<span class="w"> </span>undefined<span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/g</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;love&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p><em>search()</em>: Tests for a match in a string. It returns the index of the match, or -1 if the search fails.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I love JavaScript&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/love/g</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">2</span>
+</pre></div>
+</div>
+</section>
+<section id="replacing-a-substring">
+<h4>Replacing a substring<a class="headerlink" href="#replacing-a-substring" title="Link to this heading">#</a></h4>
+<p><em>replace()</em>: Executes a search for a match in a string, and replaces the matched substring with a replacement substring.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python is the most beautiful language that a human begin has ever created.\</span>
+<span class="s1">I recommend python for a first programming language&#39;</span>
+
+<span class="nx">matchReplaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/Python|python/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matchReplaced</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>JavaScript<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>beautiful<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>a<span class="w"> </span>human<span class="w"> </span>begin<span class="w"> </span>has<span class="w"> </span>ever<span class="w"> </span>created.I<span class="w"> </span>recommend<span class="w"> </span>python<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>first<span class="w"> </span>programming<span class="w"> </span>language
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python is the most beautiful language that a human begin has ever created.\</span>
+<span class="s1">I recommend python for a first programming language&#39;</span>
+
+<span class="nx">matchReplaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/Python|python/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matchReplaced</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>JavaScript<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>beautiful<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>a<span class="w"> </span>human<span class="w"> </span>begin<span class="w"> </span>has<span class="w"> </span>ever<span class="w"> </span>created.I<span class="w"> </span>recommend<span class="w"> </span>JavaScript<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>first<span class="w"> </span>programming<span class="w"> </span>language
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python is the most beautiful language that a human begin has ever created.\</span>
+<span class="s1">I recommend python for a first programming language&#39;</span>
+
+<span class="nx">matchReplaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/Python/gi</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matchReplaced</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>JavaScript<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>beautiful<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>a<span class="w"> </span>human<span class="w"> </span>begin<span class="w"> </span>has<span class="w"> </span>ever<span class="w"> </span>created.I<span class="w"> </span>recommend<span class="w"> </span>JavaScript<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>first<span class="w"> </span>programming<span class="w"> </span>language
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;%I a%m te%%a%%che%r% a%n%d %% I l%o%ve te%ach%ing.\</span>
+<span class="s1">T%he%re i%s n%o%th%ing as m%ore r%ewarding a%s e%duc%at%i%ng a%n%d e%m%p%ow%er%ing \</span>
+<span class="s1">p%e%o%ple.\</span>
+<span class="s1">I fo%und te%a%ching m%ore i%n%t%er%%es%ting t%h%an any other %jobs.\</span>
+<span class="s1">D%o%es thi%s m%ot%iv%a%te %y%o%u to b%e a t%e%a%cher.&#39;</span>
+
+<span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>I<span class="w"> </span>am<span class="w"> </span>teacher<span class="w"> </span>and<span class="w">  </span>I<span class="w"> </span>love<span class="w"> </span>teaching.There<span class="w"> </span>is<span class="w"> </span>nothing<span class="w"> </span>as<span class="w"> </span>more<span class="w"> </span>rewarding<span class="w"> </span>as<span class="w"> </span>educating<span class="w"> </span>and<span class="w"> </span>empowering<span class="w"> </span>people.I<span class="w"> </span>found<span class="w"> </span>teaching<span class="w"> </span>more<span class="w"> </span>interesting<span class="w"> </span>than<span class="w"> </span>any<span class="w"> </span>other<span class="w"> </span>jobs.Does<span class="w"> </span>this<span class="w"> </span>motivate<span class="w"> </span>you<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>teacher.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>[]:  A set of characters</p>
+<ul>
+<li><p>[a-c] means, a or b or c</p></li>
+<li><p>[a-z] means, any letter a to z</p></li>
+<li><p>[A-Z] means, any character A to Z</p></li>
+<li><p>[0-3] means, 0 or 1 or 2 or 3</p></li>
+<li><p>[0-9] means any number 0 to 9</p></li>
+<li><p>[A-Za-z0-9] any character which is a to z, A to Z, 0 to 9</p></li>
+</ul>
+</li>
+<li><p>\:  uses to escape special characters</p>
+<ul>
+<li><p>\d mean: match where the string contains digits (numbers from 0-9)</p></li>
+<li><p>\D mean: match where the string does not contain digits</p></li>
+</ul>
+</li>
+<li><p>. : any character except new line character(\n)</p></li>
+<li><p>^: starts with</p>
+<ul>
+<li><p>r’^substring’ eg r’^love’, a sentence which starts with a word love</p></li>
+<li><p>r’[^abc] mean not a, not b, not c.</p></li>
+</ul>
+</li>
+<li><p>$: ends with</p>
+<ul>
+<li><p>r’substring<span class="math notranslate nohighlight">\(' eg r'love\)</span>’, sentence ends with a word love</p></li>
+</ul>
+</li>
+<li><p>*: zero or more times</p>
+<ul>
+<li><p>r’[a]*’ means a optional or it can occur many times.</p></li>
+</ul>
+</li>
+<li><p>+: one or more times</p>
+<ul>
+<li><p>r’[a]+’ means at least once or more times</p></li>
+</ul>
+</li>
+<li><p>?: zero or one times</p>
+<ul>
+<li><p>r’[a]?’ means zero times or once</p></li>
+</ul>
+</li>
+<li><p>\b: word bounder, matches with the beginning or ending of a word</p></li>
+<li><p>{3}: Exactly 3 characters</p></li>
+<li><p>{3,}: At least 3 characters</p></li>
+<li><p>{3,8}: 3 to 8 characters</p></li>
+<li><p>|: Either or</p>
+<ul>
+<li><p>r’apple|banana’ mean either of an apple or a banana</p></li>
+</ul>
+</li>
+<li><p>(): Capture and group</p></li>
+</ul>
+<p><img alt="Regular Expression cheat sheet" src="book/images/regex.png" /></p>
+<p>Let’s use example to clarify the above meta characters</p>
+</section>
+</section>
+<section id="square-bracket">
+<h3>Square Bracket<a class="headerlink" href="#square-bracket" title="Link to this heading">#</a></h3>
+<p>Let’s use square bracket to include lower and upper case</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;[Aa]pple&#39;</span><span class="w"> </span><span class="c1">// this square bracket means either A or a</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits. An old cliche says an apple a day keeps the  doctor way has been replaced by a banana a day keeps the doctor far far away. &#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;Apple&quot;</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>input:<span class="w"> </span><span class="s2">&quot;Apple and banana are fruits. An old cliche says an apple a day keeps the  doctor way has been replaced by a banana a day keeps the doctor far far away.&quot;</span>,<span class="w"> </span>groups:<span class="w"> </span>undefined<span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[Aa]pple/g</span><span class="w"> </span><span class="c1">// this square bracket means either A or a</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits. An old cliche says an apple a day a doctor way has been replaced by a banana a day keeps the doctor far far away. &#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;Apple&quot;</span>,<span class="w"> </span><span class="s2">&quot;apple&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>If we want to look for the banana, we write the pattern as follows:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[Aa]pple|[Bb]anana/g</span><span class="w"> </span><span class="c1">// this square bracket mean either A or a</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits. An old cliche says an apple a day a doctor way has been replaced by a banana a day keeps the doctor far far away. Banana is easy to eat too.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;Apple&quot;</span>,<span class="w"> </span><span class="s2">&quot;banana&quot;</span>,<span class="w"> </span><span class="s2">&quot;apple&quot;</span>,<span class="w"> </span><span class="s2">&quot;banana&quot;</span>,<span class="w"> </span><span class="s2">&quot;Banana&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Using the square bracket and or operator , we manage to extract Apple, apple, Banana and banana.</p>
+</section>
+<section id="escape-character-in-regexp">
+<h3>Escape character(\) in RegExp<a class="headerlink" href="#escape-character-in-regexp" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d/g</span><span class="w">  </span><span class="c1">// d is a special character which means digits</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in January 12,  2020.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="w"> </span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;0&quot;, &quot;2&quot;, &quot;0&quot;], this is not what we want</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d+/g</span><span class="w">  </span><span class="c1">// d is a special character which means digits</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in January 12,  2020.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="w"> </span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;12&quot;, &quot;2020&quot;], this is not what we want</span>
+</pre></div>
+</div>
+</section>
+<section id="one-or-more-times">
+<h3>One or more times(+)<a class="headerlink" href="#one-or-more-times" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d+/g</span><span class="w">  </span><span class="c1">// d is a special character which means digits</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in January 12,  2020.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="w"> </span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;12&quot;, &quot;2020&quot;], this is not what we want</span>
+</pre></div>
+</div>
+</section>
+<section id="period">
+<h3>Period(.)<a class="headerlink" href="#period" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[a]./g</span><span class="w">  </span><span class="c1">// this square bracket means a and . means any character except new line</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;an&quot;, &quot;an&quot;, &quot;an&quot;, &quot;a &quot;, &quot;ar&quot;]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[a].+/g</span><span class="w">  </span><span class="c1">// . any character, + any character one or more times </span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&#39;and banana are fruits&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="zero-or-more-times">
+<h3>Zero or more times(*)<a class="headerlink" href="#zero-or-more-times" title="Link to this heading">#</a></h3>
+<p>Zero or many times. The pattern may not occur or it can occur many times.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[a].*/g</span><span class="w">  </span><span class="c1">//. any character, + any character one or more times </span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Apple and banana are fruits&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&#39;and banana are fruits&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="zero-or-one-times">
+<h3>Zero or one times(?)<a class="headerlink" href="#zero-or-one-times" title="Link to this heading">#</a></h3>
+<p>Zero or one times. The pattern may not occur or it may occur once.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;I am not sure if there is a convention how to write the word e-mail.\</span>
+<span class="s1">Some people write it email others may write it as Email or E-mail.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[Ee]-?mail/g</span><span class="w">  </span><span class="c1">// ? means optional</span>
+<span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;e-mail&quot;, &quot;email&quot;, &quot;Email&quot;, &quot;E-mail&quot;]</span>
+</pre></div>
+</div>
+</section>
+<section id="quantifier-in-regexp">
+<h3>Quantifier in RegExp<a class="headerlink" href="#quantifier-in-regexp" title="Link to this heading">#</a></h3>
+<p>We can specify the length of the substring we look for in a text, using a curly bracket. Let us see, how ot use RegExp quantifiers. Imagine, we are interested in substring that their length are 4 characters</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\\b\w{4}\b/g</span><span class="w">  </span><span class="c1">//  exactly four character words</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">//[&#39;This&#39;, &#39;made&#39;, &#39;2019&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\b[a-zA-Z]{4}\b/g</span><span class="w">  </span><span class="c1">//  exactly four character  words without numbers</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">//[&#39;This&#39;, &#39;made&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d{4}/g</span><span class="w">  </span><span class="c1">// a number and exactly four digits</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&#39;2019&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\d{1,4}/g</span><span class="w">   </span><span class="c1">// 1 to 4</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&#39;6&#39;, &#39;2019&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="cart">
+<h3>Cart ^<a class="headerlink" href="#cart" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Starts with</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^This/</span><span class="w"> </span><span class="c1">// ^ means starts with</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&#39;This&#39;]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Negation</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;This regular expression example was made in December 6,  2019.&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[^A-Za-z,. ]+/g</span><span class="w">  </span><span class="c1">// ^ in set character means negation, not A to Z, not a to z, no space, no comma no period</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">txt</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span><span class="w">  </span><span class="c1">// [&quot;6&quot;, &quot;2019&quot;]</span>
+</pre></div>
+</div>
+</section>
+<section id="exact-match">
+<h3>Exact match<a class="headerlink" href="#exact-match" title="Link to this heading">#</a></h3>
+<p>It should have ^ starting and $ which is an end.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^[A-Z][a-z]{3,12}$/</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p>🌕 You are going far. Keep going! Now, you are super charged with the power of regular expression. You have the power to extract and clean any kind of text and you can make meaning out of unstructured data. You have just completed day 12 challenges and you are 12 steps a head in to your way to greatness. Now do some exercises for your brain and for your muscle.</p>
+</section>
+</section>
+<section id="exercises">
+<h2>💻 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercises-level-1">
+<h3>Exercises: Level 1<a class="headerlink" href="#exercises-level-1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Calculate the total annual income of the person from the following text. ‘He earns 4000 euro from salary per month, 10000 euro annual bonus, 5500 euro online courses per month.’</p></li>
+<li><p>The position of some particles on the horizontal x-axis -12, -4, -3 and  -1 in the negative direction, 0 at origin, 4 and 8 in the positive direction. Extract these numbers and find the distance between the two furthest particles.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;8&#39;</span><span class="p">]</span>
+<span class="nx">sortedPoints</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">[</span><span class="o">-</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">]</span>
+<span class="nx">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">12</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Write a pattern which identify if a string is a valid JavaScript variable</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>is_valid_variable<span class="o">(</span><span class="s1">&#39;first_name&#39;</span><span class="o">)</span><span class="w"> </span><span class="c1"># True</span>
+is_valid_variable<span class="o">(</span><span class="s1">&#39;first-name&#39;</span><span class="o">)</span><span class="w"> </span><span class="c1"># False</span>
+is_valid_variable<span class="o">(</span><span class="s1">&#39;1first_name&#39;</span><span class="o">)</span><span class="w"> </span><span class="c1"># False</span>
+is_valid_variable<span class="o">(</span><span class="s1">&#39;firstname&#39;</span><span class="o">)</span><span class="w"> </span><span class="c1"># True</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercises-level-2">
+<h3>Exercises: Level 2<a class="headerlink" href="#exercises-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Write a function called <em>tenMostFrequentWords</em> which get the ten most frequent word from a string?</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">paragraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.`</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tenMostFrequentWords</span><span class="p">(</span><span class="nx">paragraph</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;love&#39;</span>,<span class="w"> </span>count:6<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;you&#39;</span>,<span class="w"> </span>count:5<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;can&#39;</span>,<span class="w"> </span>count:3<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;what&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;teaching&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;not&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;else&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;do&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;I&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;which&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;to&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;the&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;something&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;if&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;give&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;develop&#39;</span>,count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;capabilities&#39;</span>,count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;application&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;an&#39;</span>,count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;all&#39;</span>,count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;Python&#39;</span>,count:1<span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>word:<span class="s1">&#39;If&#39;</span>,count:1<span class="o">}]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tenMostFrequentWords</span><span class="p">(</span><span class="nx">paragraph</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[{</span>word:<span class="s1">&#39;love&#39;</span>,<span class="w"> </span>count:6<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;you&#39;</span>,<span class="w"> </span>count:5<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;can&#39;</span>,<span class="w"> </span>count:3<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;what&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;teaching&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;not&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;else&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;do&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;I&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,
+<span class="o">{</span>word:<span class="s1">&#39;which&#39;</span>,<span class="w"> </span>count:1<span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="exercises-level-3">
+<h3>Exercises: Level 3<a class="headerlink" href="#exercises-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Writ a function which cleans text. Clean the following text. After cleaning, count three most frequent words in the string.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nx">sentence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`%I $am@% a %tea@cher%, &amp;and&amp; I lo%#ve %tea@ching%;. There $is nothing; &amp;as&amp; mo@re rewarding as educa@ting &amp;and&amp; @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?`</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cleanText</span><span class="p">(</span><span class="nx">sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span>a<span class="w"> </span>teacher<span class="w"> </span>and<span class="w"> </span>I<span class="w"> </span>love<span class="w"> </span>teaching<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>nothing<span class="w"> </span>as<span class="w"> </span>more<span class="w"> </span>rewarding<span class="w"> </span>as<span class="w"> </span>educating<span class="w"> </span>and<span class="w"> </span>empowering<span class="w"> </span>people<span class="w"> </span>I<span class="w"> </span>found<span class="w"> </span>teaching<span class="w"> </span>more<span class="w"> </span>interesting<span class="w"> </span>than<span class="w"> </span>any<span class="w"> </span>other<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>Does<span class="w"> </span>this<span class="w"> </span>motivate<span class="w"> </span>you<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>teacher
+<span class="w"> </span><span class="sb">```</span>
+<span class="m">2</span>.<span class="w"> </span>Write<span class="w"> </span>a<span class="w"> </span><span class="k">function</span><span class="w"> </span>which<span class="w"> </span>find<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>frequent<span class="w"> </span>words.<span class="w"> </span>After<span class="w"> </span>cleaning,<span class="w"> </span>count<span class="w"> </span>three<span class="w"> </span>most<span class="w"> </span>frequent<span class="w"> </span>words<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>string.
+
+<span class="sb">```</span>js
+<span class="w"> </span>console.log<span class="o">(</span>mostFrequentWords<span class="o">(</span>cleanedText<span class="o">))</span>
+<span class="w"> </span><span class="o">[{</span>word:<span class="s1">&#39;I&#39;</span>,<span class="w"> </span>count:3<span class="o">}</span>,<span class="w"> </span><span class="o">{</span>word:<span class="s1">&#39;teaching&#39;</span>,<span class="w"> </span>count:2<span class="o">}</span>,<span class="w"> </span><span class="o">{</span>word:<span class="s1">&#39;teacher&#39;</span>,<span class="w"> </span>count:2<span class="o">}]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_set_map.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">10. Set và Map</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_console.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">13. Console</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexp-parameters">RegExp parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern">Pattern</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flags">Flags</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pattern-with-regexp-constructor">Creating a pattern with RegExp Constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-pattern-without-regexp-constructor">Creating a pattern without RegExp Constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexpp-object-methods">RegExpp Object Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-a-match">Testing for  a match</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-containing-all-of-the-match">Array containing all of the match</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replacing-a-substring">Replacing a substring</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-bracket">Square Bracket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-character-in-regexp">Escape character(\) in RegExp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-or-more-times">One or more times(+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#period">Period(.)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-or-more-times">Zero or more times(*)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-or-one-times">Zero or one times(?)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifier-in-regexp">Quantifier in RegExp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">Cart ^</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-match">Exact match</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">💻 Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

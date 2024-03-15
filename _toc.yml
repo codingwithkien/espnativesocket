@@ -39,7 +39,17 @@ parts:
       - file: book/chapter_js/06_loop
       - file: book/chapter_js/07_function
       - file: book/chapter_js/05_object
-      - file: book/chapter_js/09_high_function
+      - file: book/chapter_js/10_set_map
+      - file: book/chapter_js/11_destructuring_spread
+      - file: book/chapter_js/12_regular_expression
+      - file: book/chapter_js/13_console
+      - file: book/chapter_js/14_error_handling
+      - file: book/chapter_js/15_classes
+      - file: book/chapter_js/16_json
+      - file: book/chapter_js/17_web_storage
+      - file: book/chapter_js/18_promises
+      - file: book/chapter_js/19_dom
+      - file: book/chapter_js/20_event
   - caption: Xây dựng ứng dụng với React Native và TailwindCSS
     chapters:
       - file: book/chapter_app/create_app
